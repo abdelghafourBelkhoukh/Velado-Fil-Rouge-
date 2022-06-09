@@ -21,7 +21,7 @@ class Products extends Database{
         $this->conn = $db;
     }
 
-    public function create($data){
+    public function create($data, $image){
         $Rank = 1;
         $sql = '';
         if($data['rank'] == null){
@@ -36,7 +36,7 @@ class Products extends Database{
         $stmt->bindParam(':name', $data['name']);
         $stmt->bindParam(':price', $data['price']);
         $stmt->bindParam(':description', $data['description']);
-        $stmt->bindParam(':image', $data['image']);
+        $stmt->bindParam(':image', $image);
         $stmt->bindParam(':category', $data['category']);
         $stmt->bindParam(':quantity', $data['quantity']);
         
@@ -48,7 +48,7 @@ class Products extends Database{
     }
 
     public function read(){
-        $sql = "SELECT * FROM products";
+        $sql = "SELECT * FROM products ORDER BY id DESC";
         $stmt = $this->conn->prepare($sql);
         if ($stmt->execute()) {
             $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
