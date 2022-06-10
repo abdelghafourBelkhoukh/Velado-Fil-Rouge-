@@ -23,7 +23,7 @@ export default {
 
 <style lang="scss" scoped>
 .section-image{
-    background-image: url("../assets/images/categorybackground.jpg");
+    background-image: url("../../assets/images/categorybackground.jpg");
     // background-color: aquamarine;
     background-size: cover;
     background-position: center;

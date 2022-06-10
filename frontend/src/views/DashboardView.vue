@@ -18,8 +18,8 @@
 
 <script>
 import PopUpUser from '../components/popups/PopUpUser.vue';
-import DashboardNavBar  from '../components/DashboardNavBar.vue'
-import DashboardContent from '../components/DashboardContent.vue'
+import DashboardNavBar  from '../components/dashboard/DashboardNavBar.vue'
+import DashboardContent from '../components/dashboard/DashboardContent.vue'
 import PopUpUpdateUser from '../components/popups/PopUpUpdateUser.vue';
 import popupQuantity from '@/components/popups/PopupQuantity.vue';
 import PopUpProduct from '@/components/popups/PopUpProduct.vue';

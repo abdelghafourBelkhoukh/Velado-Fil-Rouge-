@@ -12,12 +12,12 @@
 
 <script>
 // @ is an alias to /src
-import NavBar from "../components/NavBar.vue"
-import SubNavBar from "../components/SubNavBar.vue"
-import FooterVue from "../components/Footer.vue"
-import SearchBar from "../components/SearchBar.vue"
-import SectionImages from "../components/SectionImagesCategory.vue"
-import CategoryPosts from "@/components/CategoryPosts.vue"
+import NavBar from "../components/navBar/NavBar.vue"
+import SubNavBar from "../components/navBar/SubNavBar.vue"
+import FooterVue from "../components/footer/Footer.vue"
+import SearchBar from "../components/searchBar/SearchBar.vue"
+import SectionImages from "../components/sectionImage/SectionImagesCategory.vue"
+import CategoryPosts from "@/components/productPost/CategoryPosts.vue"
 
 export default {
   name: 'CategoryView',

@@ -5,8 +5,8 @@
 </template>
 <script>
 import shoppingCart from "../components/cart/shoppingCart.vue";
-import Footer from "../components/Footer.vue";
-import NavBar from "../components/NavBar.vue";
+import Footer from "../components/footer/Footer.vue";
+import NavBar from "../components/navBar/NavBar.vue";
 
 export default {
   name: "CartView",

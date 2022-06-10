@@ -7,9 +7,9 @@
 
 <script>
 // @ is an alias to /src
-import NavBar from "../components/NavBar.vue"
-import FooterVue from "../components/Footer.vue"
-import SectionImages from "../components/LoginImageSec.vue"
+import NavBar from "../components/navBar/NavBar.vue"
+import FooterVue from "../components/footer/Footer.vue"
+import SectionImages from "../components/login/LoginImageSec.vue"
 
 export default {
   name: 'LoginView',

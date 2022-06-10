@@ -7,9 +7,9 @@
 
 <script>
 // @ is an alias to /src
-import NavBar from "../components/NavBar.vue"
-import FooterVue from "../components/Footer.vue"
-import registerImageSec from "../components/RegisterImageSec.vue"
+import NavBar from "../components/navBar/NavBar.vue"
+import FooterVue from "../components/footer/Footer.vue"
+import registerImageSec from "../components/Register/RegisterImageSec.vue"
 
 export default {
   name: 'RegisterView',

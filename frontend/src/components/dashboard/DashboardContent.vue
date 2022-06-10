@@ -44,14 +44,14 @@
 </template>
 
 <script>
-import DashboardStatistic from './DashboardStatistic.vue';
-import DashboardSideBar from './DashboardSideBar.vue';
-import Dashboard from './tables/Dashboard.vue';
-import Categories from './tables/Categories.vue';
-import Stock from './tables/Stock.vue';
-import Users from './tables/Users.vue';
-import deliverers from './tables/deliverers.vue';
-import Products from './tables/Products.vue';
+import DashboardStatistic from '../dashboard/DashboardStatistic.vue';
+import DashboardSideBar from '../dashboard/DashboardSideBar.vue';
+import Dashboard from '../tables/Dashboard.vue';
+import Categories from '../tables/Categories.vue';
+import Stock from '../tables/Stock.vue';
+import Users from '../tables/Users.vue';
+import deliverers from '../tables/deliverers.vue';
+import Products from '../tables/Products.vue';
 
 
 export default{

@@ -14,14 +14,14 @@
 
 <script>
 // @ is an alias to /src
-import NavBar from "../components/NavBar.vue";
-import SubNavBar from "../components/SubNavBar.vue";
-import SectionImages from "../components/SectionImages.vue";
-import BestSellsPosts from "../components/BestSellsPosts.vue";
-import BestProductsPosts from "../components/BestProductsPosts.vue";
-import BestOffersPosts from "../components/BestOffersPosts.vue";
-import FooterVue from "../components/Footer.vue";
-import SearchBar from "../components/SearchBar.vue";
+import NavBar from "../components/navBar/NavBar.vue";
+import SubNavBar from "../components/navBar/SubNavBar.vue";
+import SectionImages from "../components/sectionImage/SectionImagesHome.vue";
+import BestSellsPosts from "../components/productPost/BestSellsPosts.vue";
+import BestProductsPosts from "../components/productPost/BestProductsPosts.vue";
+import BestOffersPosts from "../components/productPost/BestOffersPosts.vue";
+import FooterVue from "../components/footer/Footer.vue";
+import SearchBar from "../components/searchBar/SearchBar.vue";
 
 export default {
   name: "HomeView",

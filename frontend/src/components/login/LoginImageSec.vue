@@ -68,7 +68,7 @@ export default {
 
 <style lang="scss" scoped>
 .section-image{
-    background-image: url("../assets/images/registerImage.jpg");
+    background-image: url("../../assets/images/registerImage.jpg");
     @media (max-width: 350px) {
         background-image: none;
         

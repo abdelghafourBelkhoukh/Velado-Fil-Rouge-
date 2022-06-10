@@ -2,7 +2,7 @@
     <div class="">
         <div class="nav-menu flex-col w-full md:flex-row py-2">
         <div class="hamberger h-[10vh] w-full flex items-center justify-between md:w-2/5 ">
-            <div class="logo w-auto ml-10 "><router-link to="/" ><img src="../assets/images/logo.png" alt=""></router-link></div>
+            <div class="logo w-auto ml-10 "><router-link to="/" ><img src="../../assets/images/logo.png" alt=""></router-link></div>
             <i class="fa-solid fa-bars text-base" @click="showMenu()"></i>
         </div>
         <div

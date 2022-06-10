@@ -27,7 +27,7 @@ export default {
 
 <style lang="scss" scoped>
 .section-image{
-    background-image: url("../assets/images/secImage.jpg");
+    background-image: url("../../assets/images/secImage.jpg");
     // background-color: aquamarine;
     background-size: cover;
     background-position: center;
