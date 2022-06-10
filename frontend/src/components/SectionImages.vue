@@ -8,10 +8,10 @@
                     <p class="text-2xl font-normal leading-loose">une suite de mots sans signification utilisée à titre <br> provisoire ...</p>
                 </div>
             <div class="ml-32 mt-20">
-                <button class="inline-block px-8 py-3 border-2 bg-white hover:border-white text-gray-800  font-medium text-lg leading-tight uppercase rounded hover:bg-opacity-50 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Sign up</button>
+                <router-link to="/Register"><button class="inline-block px-8 py-3 border-2 bg-white hover:border-white text-gray-800  font-medium text-lg leading-tight uppercase rounded hover:bg-opacity-50 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Sign up</button></router-link>
             </div>
         </div>
-       
+    
     </div>
 </template>
 

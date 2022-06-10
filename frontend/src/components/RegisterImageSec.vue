@@ -1,9 +1,9 @@
 <template>
-    <div class="section-image">
-        <div class="md:bg-black md:w-100 md:h-full opacity-30">
+    <div class="section-image h-auto relative">
+        <div class="md:bg-black absolute top-0 left-0 md:w-full md:h-full opacity-40">
         </div>
-        <div class="loginContainer absolute w-full h-auto flex justify-center top-[14rem]">
-            <div class="loginForm bg-white sm:w-2/3 md:w-2/4 xl:w-1/3 h-auto flex justify-start flex-col px-8 py-14 rounded-lg shadow-xl">
+        <div class="loginContainer  w-full h-auto flex justify-center sm:py-20 ">
+            <div class="loginForm bg-white sm:w-2/3 md:w-2/4 xl:w-1/3 h-auto flex justify-start flex-col px-8 py-14 rounded-lg sm:shadow-xl z-10">
                 <p class="text-gray-800 font-medium text-center">Register</p>
                 <div class="">
                     <label class="block text-sm text-gray-00" for="cus_FirstName">First Name</label>
@@ -112,10 +112,13 @@ export default {
 <style lang="scss" scoped>
 .section-image{
     background-image: url("../assets/images/registerImage.jpg");
+    @media (max-width: 639px) {
+        background-image: none;
+        
+    }
     // background-color: aquamarine;
     background-size: cover;
     background-position: center;
-    height: 133vh;
     .loginContainer{
         .loginForm{
             input{
