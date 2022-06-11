@@ -5,7 +5,8 @@
   <div class="search w-full ">
     <SearchBar />
   </div>
-  <CategoryPosts />
+  <CategoryPosts v-if="!search"/>
+  <SearchPosts v-if="search"/>
   <FooterVue />
 
 </template> 
@@ -18,6 +19,7 @@ import FooterVue from "../components/footer/Footer.vue"
 import SearchBar from "../components/searchBar/SearchBar.vue"
 import SectionImages from "../components/sectionImage/SectionImagesCategory.vue"
 import CategoryPosts from "@/components/productPost/CategoryPosts.vue"
+import SearchPosts from "@/components/productPost/SearchPosts.vue"
 
 export default {
   name: 'CategoryView',
@@ -27,8 +29,14 @@ export default {
     SectionImages,
     CategoryPosts,
     FooterVue,
-    SearchBar
-}
+    SearchBar,
+    SearchPosts
+  },
+  computed: {
+    search() {
+      return this.$store.state.search;
+    },
+  },
 }
 </script>
 <style lang="sass" scoped>

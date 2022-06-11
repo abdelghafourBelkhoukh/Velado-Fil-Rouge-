@@ -1,9 +1,12 @@
 <template>
-    <h1 class="text-center py-10 text-4xl font-semibold mt-18 md:mt-0">All products</h1>
+    <h1 class="text-center py-10 text-4xl font-semibold">Search result</h1>
+    <div class="text-center" v-if="searchResult.length < 1">
+        <p class="text-center text-xl font-semibold">No result found</p>
+    </div>
     <div class="postsContainer h-auto w-full grid md:grid-cols-2 lg:grid-cols-3">
-        <div v-for="post in productsData" class="post h-auto w-auto my-6">
+        <div v-for="post in searchResult" class="post h-auto w-auto my-6">
             <div class="container  relative" @click="showProductPage(post.id)">
-                <img class="absolute w-full h-full" :src="'/productImage/' + post.image" alt="">
+                <img class="absolute w-full h-full " :src="'/productImage/' + post.image" alt="">
                 <div class="overlay ">
                     <div class = "items"></div>
                     <div class = "items head">
@@ -11,7 +14,6 @@
                     <hr>
                     </div>
                     <div class = "items price">
-                    <!-- <p class="old">{{post.oldPrice}}</p> -->
                     <p class="new">{{post.price}} DH/Kg</p>
                     </div>
                     <div class="items cart">
@@ -27,18 +29,19 @@
 <script>
 
 export default {
-    name: 'CategoryPosts',
+    name: 'SearchPosts',
     data(){
         return{
-          //
+            length: 0,
         }
     },
     mounted(){
       //
     },
     computed:{
-        productsData(){
-            return this.$store.state.productsData;
+        searchResult(){
+            this.length = this.$store.state.searchResult.length;
+            return this.$store.state.searchResult;
         }
     },
     methods:{
@@ -47,15 +50,16 @@ export default {
             this.$store.commit("showProductPage");
         },
         addToCart(e,id){
-          e.stopPropagation();
             let dataCart = {
                 id: id,
                 qty: 1,
                 page:false
             }
             this.$store.commit("addToCart", dataCart);
+            e.stopPropagation();
         }
     },
+    
 }
 </script>
 
@@ -86,12 +90,13 @@ export default {
   color: #fff;
   transition: all 0.5s;
   font-family: 'Playfair Display', serif;
+
 }
 
 
 .items {
     padding-left: 20px;
-    letter-spacing: 3px;
+  letter-spacing: 3px;
 }
 
 .head {
@@ -166,12 +171,13 @@ export default {
 }
 
 .container:hover{
-    background: black;
-    transition: all 0.5s;
-}
-.container:hover img{
-    z-index: -1;
-
+    transition: all 0.5s;    
+    img{
+        z-index: -1;
+    }
+    .overlay{
+    background: black ;
+    }
 }
 
 

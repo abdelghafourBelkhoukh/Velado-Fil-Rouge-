@@ -50,8 +50,11 @@ export default createStore({
     popupCategory: false,
     popupUpdateCategory: false,
     categoryData: {},
-    caregoryName: "",
+    caregoryName: "All Products",
     //------------
+    //search
+    search: false,
+    searchResult: [],
   },
   getters: {},
   mutations: {
@@ -88,6 +91,10 @@ export default createStore({
     // start Product
     GetProducts(state, products) {
       state.products = products;
+    },
+    GetAllProducts(state, products) {
+      state.productsData = state.products;
+      state.caregoryName = "All Products";
     },
     popupProduct(state) {
       state.popupProduct = !state.popupProduct;
@@ -209,6 +216,21 @@ export default createStore({
       state.cartData = state.cartData.filter((product) => {
         return product.productID !== id;
       });
+    },
+
+    //search
+    Search(state, searchData) {
+      if (state.productsData.length > 0) {
+        state.searchResult = state.productsData.filter((product) =>
+          product.name.toLowerCase().includes(searchData.toLowerCase())
+          );
+        } else {
+          state.searchResult = state.products.filter(
+            (product) =>
+            product.name.toLowerCase().includes(searchData.toLowerCase()) ||
+            product.category.toLowerCase().includes(searchData.toLowerCase())
+            );
+          }
     },
   },
   actions: {

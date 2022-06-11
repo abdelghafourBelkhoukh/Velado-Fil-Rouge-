@@ -1,5 +1,5 @@
 <template>
-<div class="z-[999] bg-black w-full h-screen opacity-50 fixed"></div>
+<div class="z-[999] bg-black w-full h-screen opacity-60 fixed"></div>
 <div  class=" bg-white fixed z-[1000] top-0 left-0 m-10 w-[90%] md:w-[95%]">
     <!--icon to go back-->
     <div class="h-[10vh] pl-8 flex items-center" @click="showProductPage">

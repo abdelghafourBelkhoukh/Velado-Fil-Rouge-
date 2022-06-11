@@ -5,10 +5,11 @@
             <!-- <div v-if="showCategory" class="contentList bg-black md:h-screen md:absolute md:opacity-0 md:top-0 md:z-10  md:block hidden" @click="hidDropDownList">
             </div> -->
             <li class="relative">
-                <span><router-link to="/Category">Categories</router-link></span>
+                <span>Categories</span>
                     <div v-if="showCategory" class="contentCategories max-w-2xl bg-white h-auto p-4 absolute z-20 flex justify-center md:block hidden">
                         <ul class="grid grid-rows-6 grid-flow-col w-auto">
-                            <li class="w-auto" v-for="category in $store.state.categories" @click="getProductByCategory(category.name)" >{{category.name}}</li>
+                            <li class="w-auto cursor-pointer" @click="getAllProduct">All</li>
+                            <li class="w-auto cursor-pointer" v-for="category in $store.state.categories" @click="getProductByCategory(category.name)" >{{category.name}}</li>
                         </ul>
                     </div>
                 <i class="fa-solid fa-caret-down ml-2" @mouseover="CategorieContent()"></i>
@@ -55,6 +56,12 @@ export default {
         this.CategorieContent();
         //redirect to category page
         this.$store.commit("GetProductsByCategory",category)
+        this.$router.push("/Category")
+    },
+    getAllProduct(category){
+        this.CategorieContent();
+        //redirect to category page
+        this.$store.commit("GetAllProducts")
         this.$router.push("/Category")
     }
   },
