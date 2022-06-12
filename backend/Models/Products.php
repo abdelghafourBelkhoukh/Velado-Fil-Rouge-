@@ -70,7 +70,7 @@ class Products extends Database{
         }
     }
 
-    public function update($data){
+    public function update($data,$image){
         $sql = '';
         if($data['rank'] == null){
             $sql = "UPDATE products SET name = :name, price = :price, description = :description, image = :image, category = :category WHERE id = :id";
@@ -81,14 +81,12 @@ class Products extends Database{
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':Rank', $Rank);
         }
-        
         $stmt->bindParam(':name', $data['name']);
         $stmt->bindParam(':price', $data['price']);
         $stmt->bindParam(':description', $data['description']);
-        $stmt->bindParam(':image', $data['image']);
+        $stmt->bindParam(':image', $image);
         $stmt->bindParam(':category', $data['category']);
         $stmt->bindParam(':id', $data['id']);
-
         if ($stmt->execute()) {
             return true;
         } else {

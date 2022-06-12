@@ -103,12 +103,6 @@ export default{
                 this.$store.dispatch("GetProducts");
                 this.$store.commit('popupProduct');
             })
-            // axios.post('http://localhost/fil-rouge/backend/Api/Product/ProductController.php',this.ProductData)
-            // .then(response=>{
-            //     console.log(response);
-            //     this.$store.dispatch("GetProducts");
-            //     this.$store.commit('popupProduct');
-            // })
         },
         imagechanged(e){
             this.ProductData.image = e.target.files[0];

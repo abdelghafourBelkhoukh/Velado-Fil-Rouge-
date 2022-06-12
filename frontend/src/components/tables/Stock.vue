@@ -4,7 +4,7 @@
                         <!-- card -->
                         <div class="rounded shadow bg-white mx-5 xl:w-full h-auto w-[60rem] ">
                             <div class="flex justify-between px-6 py-2 border-b border-light-grey">
-                                <div class="font-bold text-xl">Stock</div>
+                                <div class="text-red-700 text-2xl font-bold">Stock</div>
                                 <!--popup for add -->
                                 <!-- <div class="flex justify-end">
                                     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" @click="popupQuantity">

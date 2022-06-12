@@ -3,39 +3,43 @@ import HomeView from '../views/HomeView.vue'
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: "/",
+    name: "home",
+    component: HomeView,
   },
   {
-    path: '/category',
-    name: 'category',
-    component: () => import('../views/CategoryView.vue')
+    path: "/category",
+    name: "category",
+    component: () => import("../views/CategoryView.vue"),
+    children: [
+      {
+        path: "/category/:name",
+        name: "category-detail",
+        component: () => import("../views/CategoryView.vue"),
+      },
+    ],
+  },
+  {
+    path: "/Login",
+    name: "Login",
+    component: () => import("../views/LoginView.vue"),
+  },
+  {
+    path: "/Register",
+    name: "Register",
+    component: () => import("../views/RegisterView.vue"),
+  },
+  {
+    path: "/Dashboard",
+    name: "Dashboard",
+    component: () => import("../views/DashboardView.vue"),
+  },
+  {
+    path: "/Cart",
+    name: "Cart",
+    component: () => import("../views/CartView.vue"),
+  },
 
-  },
-  {
-    path: '/Login',
-    name: 'Login',
-    component: () => import('../views/LoginView.vue')
-  },
-  {
-    path: '/Register',
-    name: 'Register',
-    component: () => import('../views/RegisterView.vue')
-  },
-  {
-    path: '/Dashboard',
-    name: 'Dashboard',
-    component: () => import('../views/DashboardView.vue'),
-    
-  },
-  {
-    path: '/Cart',
-    name: 'Cart',
-    component: () => import('../views/CartView.vue'),
-    
-  },
-  
   // {
   //   path: '/about',
   //   name: 'about',
@@ -44,7 +48,7 @@ const routes = [
   //   // which is lazy-loaded when the route is visited.
   //   component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   // }
-]
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

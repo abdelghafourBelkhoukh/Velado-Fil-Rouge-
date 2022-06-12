@@ -1,7 +1,7 @@
 <template>
     <!-- Card Sextion Starts Here -->
                         <div class="flex justify-between px-6 py-2 border-b border-light-grey">
-                            <div class="font-bold text-xl">Users</div>
+                            <div class="text-red-700 text-2xl font-bold">Users</div>
                             <!--popup for add -->
                             <div class="flex justify-end">
                                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" @click="popupUser">

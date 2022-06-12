@@ -1,13 +1,12 @@
 <template>
     <!-- Card Sextion Starts Here -->
                         <div class="flex justify-between px-6 py-2 border-b border-light-grey">
-                            <div class="font-bold text-xl">Products</div>
+                            <div class="text-red-700 text-2xl font-bold">Products</div>
                             <!--popup for add -->
                             <div class="flex justify-end">
                                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" @click="popupProduct">
                                     <i class="fas fa-plus"></i>
                                 </button>
-                                
                             </div>
                         </div>
                     <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2 h-auto overflow-x-scroll xl:overflow-hidden">

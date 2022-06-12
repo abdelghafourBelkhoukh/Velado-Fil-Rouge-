@@ -38,15 +38,12 @@
                             <div class="flex flex-col">
                                 <label for="Image" class="text-sm text-gray-600">Product rating</label>
                                 <select class="w-full p-2 border-2 border-gray-400 rounded-lg" id="Image" v-model="ProductData.rank">
-                                    <option value="" selected>Normal Product</option>
-                                    <option value="bestOffer">Best offer</option>
-                                    <option value="bestSells">Best sell</option>
-                                    <option value="bestProduct">Best Product</option>
+                                    <option v-for="item in rankArray" :value="item.value" :selected="item.value === this.$store.state.productData.rank">{{item.name}}</option>
                                 </select>
                             </div>
                             <div class="flex flex-col">
                                 <label for="Image" class="text-sm text-gray-600">Enter the image of product</label>
-                                <input type="text" class="w-full p-2 border-2 border-gray-400 rounded-lg" id="Image" v-model="ProductData.image">
+                                <input type="file" name="Image" class="w-full p-2 border-2 border-gray-400 rounded-lg" id="Image" @change="imagechanged">
                             </div>
 
                         </div>
@@ -64,7 +61,23 @@
 
 <script>
 import axios from 'axios';
-
+const rankArray = [{
+        name: 'Normal Product',
+        value: ''
+    },
+    {
+        name: 'Best offer',
+        value: 'bestOffer'
+    },
+    {
+        name: 'Best sell',
+        value: 'bestSells'
+    },
+    {
+        name: 'Best Product',
+        value: 'bestProduct'
+    }
+];
 export default{
     name:'PopUpUpdateProduct',
     data(){
@@ -78,6 +91,7 @@ export default{
                 image:this.$store.state.productData.image,
                 rank:this.$store.state.productData.rank,
             },
+            rankArray:rankArray,
         }
     },
     methods:{
@@ -85,12 +99,25 @@ export default{
             this.$store.commit('popupUpdateProduct');
         },
         UpdateProduct(){
-            axios.put('http://localhost/fil-rouge/backend/Api/Product/ProductController.php',this.ProductData)
+            const formData = new FormData();
+            formData.append('id',this.ProductData.id);
+            formData.append("name", this.ProductData.name);
+            formData.append("category", this.ProductData.category);
+            formData.append("price", this.ProductData.price);
+            formData.append("description", this.ProductData.description);
+            formData.append("Image", this.ProductData.image);
+            formData.append("rank", this.ProductData.rank);
+
+            axios.put('http://localhost/fil-rouge/backend/Api/Product/ProductController.php',formData)
             .then(response=>{
                 console.log(response.data);
                 this.$store.commit('popupUpdateProduct')
                 this.$store.dispatch("GetProducts")
             })
+        },
+        imagechanged(e){
+            this.ProductData.image = e.target.files[0];
+            console.log(this.ProductData.image);
         }
     }
 }

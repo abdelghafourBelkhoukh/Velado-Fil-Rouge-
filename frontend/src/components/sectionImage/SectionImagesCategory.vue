@@ -3,7 +3,7 @@
         <div class="md:bg-black md:w-100 md:h-full md:opacity-50">
         </div>
             <div class="container md:text-white md:absolute md:top-[30vh]">
-                <div class="text-center mt-14">
+                <div class="text-center mt-14 animate__animated animate__backInLeft">
                     <h1 class="font-bold text-8xl">{{this.$store.state.caregoryName}}</h1>
                 </div>
         </div>
@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import 'animate.css';
 export default {
     name: "SectionImagesCategory",
     data() {

@@ -22,6 +22,7 @@ class ProductController extends Database{
     
     //create user
     public function Create(){
+        echo 'create product';
         $data = array(
             'name' => $_POST['name'],
             'description' => $_POST['description'],
@@ -57,12 +58,42 @@ class ProductController extends Database{
 
     //update user
     public function Update(){
-        $data = json_decode( file_get_contents("php://input"),true);
-        // update product
-        if ($this->product->Update($data)){
-            echo json_encode(array("message" => "product was updated."));
+        echo 'update product';
+
+        $data = array(
+            'id' => $_POST['id'],
+            'name' => $_POST['name'],
+            'description' => $_POST['description'],
+            'price' => $_POST['price'],
+            'category' => $_POST['category'],
+            'image' => $_FILES['Image']['name'],
+            'quantity' => $_POST['quantity'],
+            'rank' => $_POST['rank']
+        );
+
+        var_dump($data);
+        die();
+
+        $imageFileType = strtolower(pathinfo($data['image'], PATHINFO_EXTENSION));
+        // valid file extensions
+        $extensions_arr = array("jpg", "jpeg", "png", "gif");
+        // Check extension
+        //check if request has image
+        if (!empty($_FILES['Image']['name'])) {
+            if (in_array($imageFileType, $extensions_arr)) {
+                // Insert record
+                // Upload file
+                $file_name = uniqid('', true) . '.' . $imageFileType;
+                $target_path = $file_name;
+                move_uploaded_file($_FILES['Image']['tmp_name'], 'C:\xampp\htdocs\fil-rouge\frontend\public\productImage\\' . $target_path);
+                $this->product->Update($data, $target_path);
+                echo json_encode(['message' => 'Post Updated Successfully']);
+            } else {
+                echo json_encode(['message' => 'Invalid File Type']);
+            }
         } else {
-            echo json_encode(array("message" => "Unable to update product."));
+            $this->product->Update($data, null);
+            echo json_encode('product updated successfully without image');
         }
     }
 

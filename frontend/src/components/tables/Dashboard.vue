@@ -4,7 +4,7 @@
                         <!-- card -->
                         <div class="rounded  shadow bg-white mx-5 w-full h-auto">
                             <div class="px-6 py-2 border-b border-light-grey">
-                                <div class="font-bold text-xl">Trending</div>
+                                <div class="text-red-700 text-2xl font-bold">Trending</div>
                             </div>
                             <div class="table-responsive">
                                 <table class="table text-grey-darkest text-center w-full h-full">
