@@ -1,6 +1,6 @@
-import { ref } from 'vue'
-import { createStore } from 'vuex'
-import axios from 'axios'
+import { ref } from "vue";
+import { createStore } from "vuex";
+import axios from "axios";
 
 export default createStore({
   state: {
@@ -55,6 +55,9 @@ export default createStore({
     //search
     search: false,
     searchResult: [],
+    //search bar dashboard
+    SreachBarTable: "",
+    SearchDashboardData: [],
   },
   getters: {},
   mutations: {
@@ -223,14 +226,56 @@ export default createStore({
       if (state.productsData.length > 0) {
         state.searchResult = state.productsData.filter((product) =>
           product.name.toLowerCase().includes(searchData.toLowerCase())
-          );
-        } else {
-          state.searchResult = state.products.filter(
-            (product) =>
+        );
+      } else {
+        state.searchResult = state.products.filter(
+          (product) =>
             product.name.toLowerCase().includes(searchData.toLowerCase()) ||
             product.category.toLowerCase().includes(searchData.toLowerCase())
-            );
-          }
+        );
+      }
+    },
+    //search bar dashboard
+    SearchDashboard(state, searchData) {
+      switch (state.SreachBarTable) {
+        case "Products":
+          state.SearchDashboardData = state.products.filter((product) =>
+            product.name.toLowerCase().includes(searchData.toLowerCase())
+          );
+          break;
+        case "Users":
+          state.SearchDashboardData = state.users.filter(
+            (user) =>
+              user.firstname.toLowerCase().includes(searchData.toLowerCase()) ||
+              user.lastname.toLowerCase().includes(searchData.toLowerCase()) ||
+              user.email.toLowerCase().includes(searchData.toLowerCase())
+          );
+          break;
+        case "deliverers":
+          state.SearchDashboardData = state.deliverers.filter(
+            (deliverer) =>
+              deliverer.firstname
+                .toLowerCase()
+                .includes(searchData.toLowerCase()) ||
+              deliverer.lastname
+                .toLowerCase()
+                .includes(searchData.toLowerCase()) ||
+              deliverer.email.toLowerCase().includes(searchData.toLowerCase())
+          );
+          break;
+        case "categories":
+          state.SearchDashboardData = state.categories.filter((category) =>
+            category.name.toLowerCase().includes(searchData.toLowerCase())
+          );
+          break;
+        case "Stock":
+          state.SearchDashboardData = state.products.filter((product) =>
+            product.name.toLowerCase().includes(searchData.toLowerCase())
+          );
+          break;
+        default:
+          break;
+      }
     },
   },
   actions: {

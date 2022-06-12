@@ -32,5 +32,13 @@
 <script>
 export default{
     name:'Dashboard',
+    data(){
+        return{
+            //
+        }
+    },
+    mounted(){
+        this.$store.state.SreachBarTable = 'Dashboard'
+    },
 }
 </script>

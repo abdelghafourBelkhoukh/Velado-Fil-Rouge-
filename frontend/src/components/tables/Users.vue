@@ -24,7 +24,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr v-for="item in $store.state.users" class="border-b">
+                                    <tr v-for="item in SearchResult" class="border-b">
                                         <td class="py-4">{{item.firstname}}</td>
                                         <td>{{item.lastname}}</td>
                                         <td>{{item.email}}</td>
@@ -65,6 +65,15 @@ export default{
     data(){
         return{
             UserID : '',
+        }
+    },
+    mounted(){
+        this.$store.state.SreachBarTable = 'Users';
+        this.$store.state.SearchDashboardData = this.$store.state.users;
+    },
+    computed: {
+        SearchResult(){
+            return this.$store.state.SearchDashboardData;
         }
     },
     methods:{

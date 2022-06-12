@@ -26,7 +26,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr  v-for="item in $store.state.products" class="border-b">
+                                    <tr  v-for="item in SearchResult" class="border-b">
                                         <td class="py-4 w-40 px-4"><img class="w-full" :src="'/productImage/'+ item.image" :alt="item.image"></td>
                                         <td>{{item.name}}</td>
                                         <td>{{item.description}}</td>
@@ -58,6 +58,7 @@
 
                     </div>
                     <!-- /Cards Section Ends Here -->
+                    
 </template>
 
 <script>
@@ -69,6 +70,15 @@ export default{
     data(){
         return{
             UserID : '',
+        }
+    },
+    mounted(){
+        this.$store.state.SreachBarTable = 'Products'
+        this.$store.state.SearchDashboardData = this.$store.state.products;
+    },
+    computed: {
+        SearchResult(){
+            return this.$store.state.SearchDashboardData;
         }
     },
     methods:{

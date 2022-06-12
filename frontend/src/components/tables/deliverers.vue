@@ -24,7 +24,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr v-for="item in $store.state.deliverers" class="border-b">
+                                    <tr v-for="item in SearchResult" class="border-b">
                                         <td class="py-4">{{item.firstname}}</td>
                                         <td>{{item.lastname}}</td>
                                         <td>{{item.email}}</td>
@@ -63,6 +63,15 @@ import axios from 'axios';
 
 export default{
     name:'deliverers',
+    mounted(){
+        this.$store.state.SreachBarTable = 'deliverers'
+        this.$store.state.SearchDashboardData = this.$store.state.deliverers;
+    },
+    computed: {
+        SearchResult(){
+            return this.$store.state.SearchDashboardData;
+        }
+    },
     methods:{
         popupDeliverer(){
             this.$store.commit("popupDeliverer")

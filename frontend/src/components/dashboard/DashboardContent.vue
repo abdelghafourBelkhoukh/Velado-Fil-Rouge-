@@ -8,6 +8,11 @@
         <DashboardSideBar v-if="$store.state.showSideBar"  />
         <!--/Sidebar-->
         <div class="w-full h-[90vh] overflow-y-auto">
+          <!-- searchBar -->
+          <div>
+            <searchBarDashboard class="pt-12 pb-6"/>
+          </div>
+          <!-- searchBar -->
           <!-- main -->
           <DashboardStatistic v-if="$store.state.TableName==='Dashboard'"/>
           <!-- main  -->
@@ -16,19 +21,19 @@
             <div v-if="$store.state.TableName === 'Dashboard'">
               <Dashboard />
             </div>
-            <div v-if="$store.state.TableName === 'Categories' " class="mt-12">
+            <div v-if="$store.state.TableName === 'Categories' ">
               <Categories />
             </div>
-            <div v-if="$store.state.TableName === 'deliverers' " class="mt-12">
+            <div v-if="$store.state.TableName === 'deliverers' ">
               <deliverers />
             </div>
-            <div v-if="$store.state.TableName === 'Products' " class="mt-12">
+            <div v-if="$store.state.TableName === 'Products' ">
               <Products />
             </div>  
-            <div v-if="$store.state.TableName === 'Stock' " class="mt-12">
+            <div v-if="$store.state.TableName === 'Stock' ">
               <Stock />
             </div>  
-            <div v-if="$store.state.TableName === 'Users' " class="mt-12">
+            <div v-if="$store.state.TableName === 'Users' ">
               <Users />
             </div>
           <!-- tables -->
@@ -52,6 +57,8 @@ import Stock from '../tables/Stock.vue';
 import Users from '../tables/Users.vue';
 import deliverers from '../tables/deliverers.vue';
 import Products from '../tables/Products.vue';
+import searchBarDashboard from './searchBarDashboard/SearchBarDashboard.vue';
+
 
 
 export default{
@@ -69,7 +76,8 @@ export default{
     Users,
     deliverers,
     Categories,
-    Products
+    Products,
+    searchBarDashboard
 }
 }
 

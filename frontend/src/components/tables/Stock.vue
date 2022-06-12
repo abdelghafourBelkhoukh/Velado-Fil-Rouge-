@@ -24,7 +24,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr v-for="item in $store.state.products" class="border-b">
+                                    <tr v-for="item in SearchResult" class="border-b">
                                         <td class="py-4">{{item.name}}</td>
                                         <td>{{item.category}}</td>
                                         <td>{{item.quantity}}</td>
@@ -56,6 +56,15 @@ export default{
     data(){
         return{
             //
+        }
+    },
+    mounted(){
+        this.$store.state.SreachBarTable = 'Stock'
+        this.$store.state.SearchDashboardData = this.$store.state.products;
+    },
+    computed: {
+        SearchResult(){
+            return this.$store.state.SearchDashboardData;
         }
     },
     methods:{
