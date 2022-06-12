@@ -20,18 +20,17 @@
                                         <th scope="col">Name</th>
                                         <th scope="col" >Description</th>
                                         <th scope="col" class="w-auto">Category</th>
-                                        <th scope="col">Quantity</th>
                                         <th scope="col">Price</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr  v-for="item in SearchResult" class="border-b">
-                                        <td class="py-4 w-40 px-4"><img class="w-full" :src="'/productImage/'+ item.image" :alt="item.image"></td>
+                                        <td v-if="showImage" class="py-4 w-40 px-4"><img class="w-full" :src="'/productImage/'+ item.image" :alt="item.image"></td>
+                                        <td v-if="!showImage" class="py-4 w-40 px-4"><span @click="ShowImage">click here</span></td>
                                         <td>{{item.name}}</td>
                                         <td>{{item.description}}</td>
                                         <td>{{item.category}}</td>
-                                        <td>{{item.quantity}}</td>
                                         <td>{{item.price}}</td>
                                         <td class="py-4">
                                             <div class="flex flex-row justify-center">
@@ -70,6 +69,7 @@ export default{
     data(){
         return{
             UserID : '',
+            showImage : true,
         }
     },
     mounted(){
@@ -96,6 +96,9 @@ export default{
         UpdateProduct(id){
             this.$store.commit('UpdateProduct',id);
             this.$store.commit('popupUpdateProduct');
+        },
+        ShowImage(){
+            this.showImage = !this.showImage;
         }
     }
 }

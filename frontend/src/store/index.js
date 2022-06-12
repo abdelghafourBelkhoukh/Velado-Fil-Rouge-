@@ -75,6 +75,7 @@ export default createStore({
     // start User
     GetUsers(state, users) {
       state.users = users;
+      state.SearchDashboardData = state.users;
     },
     popupUser(state) {
       state.popupUser = !state.popupUser;
@@ -94,8 +95,9 @@ export default createStore({
     // start Product
     GetProducts(state, products) {
       state.products = products;
+      state.SearchDashboardData = state.products;
     },
-    GetAllProducts(state, products) {
+    GetAllProducts(state) {
       state.productsData = state.products;
       state.caregoryName = "All Products";
     },
@@ -154,6 +156,7 @@ export default createStore({
     // start Deliverer
     GetDeliverers(state, deliverers) {
       state.deliverers = deliverers;
+      state.SearchDashboardData = state.deliverers;
     },
     popupDeliverer(state) {
       state.popupDeliverer = !state.popupDeliverer;
@@ -173,6 +176,7 @@ export default createStore({
     // start Category
     GetCategories(state, categories) {
       state.categories = categories;
+      state.SearchDashboardData = state.categories;
     },
     popupCategory(state) {
       state.popupCategory = !state.popupCategory;
