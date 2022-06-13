@@ -28,7 +28,15 @@ export default createStore({
     products: [],
     popupProduct: false,
     popupUpdateProduct: false,
-    productData: {},
+    productData: {
+      id: "",
+      name: "",
+      price: "",
+      description: "",
+      image: "",
+      category: "",
+      rank: "",
+    },
     productsData: [],
     BestProduct: [],
     BestSells: [],
@@ -110,7 +118,17 @@ export default createStore({
     UpdateProduct(state, id) {
       state.products.forEach((product) => {
         if (product.id == id) {
-          state.productData = product;
+          state.productData.id = product.id;
+          state.productData.name = product.name;
+          state.productData.price = product.price;
+          state.productData.description = product.description;
+          state.productData.image = product.image;
+          state.productData.category = product.category;
+
+          let checkRank = [{ value: product.bestOffer, name: "bestOffer"}, { value: product.bestSells, name: "bestSells"}, { value: product.bestProduct, name: "bestProduct"}];   
+          state.productData.rank = checkRank.filter(function(item) {
+            return item.value == 1;
+          });    
         }
       });
     },
@@ -305,6 +323,7 @@ export default createStore({
           "http://localhost/fil-rouge/backend/Api/Product/ProductController.php"
         )
         .then((res) => {
+          console.log(res.data);
           commit("GetProducts", res.data);
           commit("filterProducts", res.data);
         })

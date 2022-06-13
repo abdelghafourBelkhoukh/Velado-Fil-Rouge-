@@ -90,6 +90,7 @@
                 <label for="Image" class="text-sm text-gray-600"
                   >Product rating</label
                 >
+                <!-- {{this.$store.state.productData.rank[0].name}} -->
                 <select
                   class="w-full p-2 border-2 border-gray-400 rounded-lg"
                   id="Image"
@@ -98,9 +99,8 @@
                   <option
                     v-for="item in rankArray"
                     :value="item.value"
-                    :selected="
-                      item.value === this.$store.state.productData.rank
-                    "
+                    :selected="item.value = this.$store.state.productData.rank[0].name"
+                    :key="item.value"
                   >
                     {{ item.name }}
                   </option>

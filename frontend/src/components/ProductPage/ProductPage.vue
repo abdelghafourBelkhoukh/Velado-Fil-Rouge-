@@ -16,7 +16,7 @@
             <div class="h-full w-full md:w-1/2">
                 <div class="flex flex-col ">
                     <!--Product title-->
-                    <div class=" pl-10  flex justify-between">
+                    <div class=" pl-10  flex justify-between flex-col small:flex-row">
                         <span class="text-3xl font-medium">{{productData.name}}</span>
                         <span class="text-xl font-medium pr-10">{{productData.price}} DH/Kg</span>
                     </div>
