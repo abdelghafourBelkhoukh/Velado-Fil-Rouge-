@@ -66,13 +66,10 @@ class ProductController extends Database{
             'description' => $_POST['description'],
             'price' => $_POST['price'],
             'category' => $_POST['category'],
-            'image' => $_FILES['Image']['name'],
-            'quantity' => $_POST['quantity'],
+            'image' => $_FILES['Image']['name'] ,
             'rank' => $_POST['rank']
         );
 
-        var_dump($data);
-        die();
 
         $imageFileType = strtolower(pathinfo($data['image'], PATHINFO_EXTENSION));
         // valid file extensions
@@ -148,10 +145,11 @@ switch ($_SERVER['REQUEST_METHOD'])
         }
         break;
     case 'POST':
-        $productClass->Create();
-        break;
-    case 'PUT':
-        $productClass->Update();
+        if(isset($_GET['id'])){
+            $productClass->Update();
+        }else{
+            $productClass->Create();
+        }
         break;
     case 'DELETE':
         $productClass->Delete();

@@ -73,18 +73,29 @@ class Products extends Database{
     public function update($data,$image){
         $sql = '';
         if($data['rank'] == null){
+            if($image == null){
+                $sql = "UPDATE products SET name = :name, price = :price, description = :description, category = :category WHERE id = :id";
+                $stmt = $this->conn->prepare($sql);
+            }else{
             $sql = "UPDATE products SET name = :name, price = :price, description = :description, image = :image, category = :category WHERE id = :id";
             $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':image', $image);
+            }
         }else{
             $Rank = 1;
-            $sql = "UPDATE products SET name = :name, price = :price, description = :description, image = :image, category = :category , ". $data['rank'] ."= :Rank WHERE id = :id";
-            $stmt = $this->conn->prepare($sql);
+            if($image == null){
+                $sql = "UPDATE products SET name = :name, price = :price, description = :description, category = :category ,". $data['rank'] . "= :Rank WHERE id = :id";
+                $stmt = $this->conn->prepare($sql);
+            }else{
+                $sql = "UPDATE products SET name = :name, price = :price, description = :description, image = :image, category = :category , ". $data['rank'] ."= :Rank WHERE id = :id";
+                $stmt = $this->conn->prepare($sql);
+                $stmt->bindParam(':image', $image);
+            }
             $stmt->bindParam(':Rank', $Rank);
         }
         $stmt->bindParam(':name', $data['name']);
         $stmt->bindParam(':price', $data['price']);
         $stmt->bindParam(':description', $data['description']);
-        $stmt->bindParam(':image', $image);
         $stmt->bindParam(':category', $data['category']);
         $stmt->bindParam(':id', $data['id']);
         if ($stmt->execute()) {

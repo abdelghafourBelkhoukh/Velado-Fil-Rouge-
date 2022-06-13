@@ -50,7 +50,7 @@ export default createStore({
     popupCategory: false,
     popupUpdateCategory: false,
     categoryData: {},
-    caregoryName: "All Products",
+    caregoryName: "All Categories",
     //------------
     //search
     search: false,
@@ -99,7 +99,7 @@ export default createStore({
     },
     GetAllProducts(state) {
       state.productsData = state.products;
-      state.caregoryName = "All Products";
+      state.caregoryName = "All Categories";
     },
     popupProduct(state) {
       state.popupProduct = !state.popupProduct;

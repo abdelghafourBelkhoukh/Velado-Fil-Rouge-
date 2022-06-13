@@ -11,13 +11,6 @@ const routes = [
     path: "/category",
     name: "category",
     component: () => import("../views/CategoryView.vue"),
-    children: [
-      {
-        path: "/category/:name",
-        name: "category-detail",
-        component: () => import("../views/CategoryView.vue"),
-      },
-    ],
   },
   {
     path: "/Login",
@@ -38,6 +31,11 @@ const routes = [
     path: "/Cart",
     name: "Cart",
     component: () => import("../views/CartView.vue"),
+  },
+  {
+    path: "/Category/:name",
+    name: "categories",
+    component: () => import("../views/CategoryView.vue"),
   },
 
   // {

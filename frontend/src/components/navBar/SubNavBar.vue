@@ -8,7 +8,7 @@
                 <span>Categories</span>
                     <div v-if="showCategory" class="contentCategories max-w-2xl bg-white h-auto p-4 absolute z-20 flex justify-center md:block hidden">
                         <ul class="grid grid-rows-6 grid-flow-col w-auto">
-                            <li class="w-auto cursor-pointer" @click="getAllProduct">All</li>
+                            <li class="w-auto cursor-pointer" @click="getProductByCategory('All_Categories')">All</li>
                             <li class="w-auto cursor-pointer" v-for="category in $store.state.categories" @click="getProductByCategory(category.name)" >{{category.name}}</li>
                         </ul>
                     </div>
@@ -55,15 +55,15 @@ export default {
     getProductByCategory(category){
         this.CategorieContent();
         //redirect to category page
-        this.$store.commit("GetProductsByCategory",category)
-        this.$router.push("/Category")
+        if(category === "All_Categories"){
+            this.$store.commit("GetAllProducts")
+            console.log("All Categories");
+        }else{
+            this.$store.commit("GetProductsByCategory",category)
+            console.log(category);
+        }
+        this.$router.push("/Category/"+category);
     },
-    getAllProduct(category){
-        this.CategorieContent();
-        //redirect to category page
-        this.$store.commit("GetAllProducts")
-        this.$router.push("/Category")
-    }
   },
 }
 </script>

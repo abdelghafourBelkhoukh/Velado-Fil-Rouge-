@@ -34,7 +34,12 @@ export default {
         }
     },
     mounted(){
-      //
+      let category = this.$route.params.name;
+      if(category === "All_Categories"){
+      this.$store.commit("GetAllProducts")
+      }else{
+      this.$store.commit("GetProductsByCategory",category)
+      }
     },
     computed:{
         productsData(){
