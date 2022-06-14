@@ -127,11 +127,15 @@
             <span>Total cost</span>
             <span>{{ totalPriceItems }} DH</span>
           </div>
+          <router-link
+            to="/checkout"
+            >
           <button
             class="bg-indigo-500 font-semibold rounded hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full"
           >
             Checkout
           </button>
+          </router-link>
         </div>
       </div>
     </div>

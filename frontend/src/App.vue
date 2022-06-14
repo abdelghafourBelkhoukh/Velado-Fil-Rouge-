@@ -14,10 +14,15 @@ export default {
     AlertCart
   },
   mounted() {
+    //get all categories
     this.$store.dispatch("GetCategories")
+    //get all products
     this.$store.dispatch("GetProducts")
-  }
-
+    //check if user is logged
+    if(localStorage.getItem("id")){
+      this.$store.state.logged = true;
+    }
+  },
 };
 
 </script>

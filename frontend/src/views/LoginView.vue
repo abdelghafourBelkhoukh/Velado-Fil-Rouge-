@@ -17,7 +17,7 @@ export default {
     NavBar,
     FooterVue,
     SectionImages
-}
+  },
 }
 </script>
 <style lang="scss">

@@ -74,7 +74,7 @@ class Products extends Database{
         $sql = '';
         if($data['rank'] == null){
             if($image == null){
-                $sql = "UPDATE products SET name = :name, price = :price, description = :description, category = :category WHERE id = :id";
+                $sql = "UPDATE products SET id = :id name = :name, price = :price, description = :description, category = :category WHERE id = :id";
                 $stmt = $this->conn->prepare($sql);
             }else{
             $sql = "UPDATE products SET name = :name, price = :price, description = :description, image = :image, category = :category WHERE id = :id";

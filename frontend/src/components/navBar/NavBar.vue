@@ -18,9 +18,14 @@
             </ul>
             <div class="login-signup-button flex w-full items-center flex-col md:flex-row md:justify-end bg-black pb-10 md:pb-0 md:pr-8">
               <!--cart icon-->
-              <router-link to="/Cart" ><i class="fa-solid fa-shopping-cart md:block px-4"></i></router-link>
+              <div v-if="logged">
+                <button class="btn btn-primary mr-4 px-4 py-2 rounded bg-white hover:bg-black text-black hover:text-white font-medium" @click="logout">Log out</button>
+              </div>
+              <div v-if="!logged">
                 <a href="" class="px-2"><router-link to="/Login">Login</router-link></a>
                 <a href="" class="px-2"><router-link to="/Register">Sign up</router-link></a>
+              </div>
+              <router-link to="/Cart" ><i class="fa-solid fa-shopping-cart md:block px-4"></i></router-link>
             </div>
         </div>
         </div>
@@ -28,17 +33,24 @@
 </template>
 
 <script>
+import { computed } from '@vue/reactivity';
 export default {
   name: 'NavBar',
   data() {
     return {
       showMobileMenu: false,
+      logged : computed(() => {
+        return this.$store.state.logged
+      })
     };
   },
   methods: {
     showMenu() {
         this.showMobileMenu = !this.showMobileMenu;
     },
+    logout() {
+      this.$store.commit('logout')
+    }
   },
 };
 </script>

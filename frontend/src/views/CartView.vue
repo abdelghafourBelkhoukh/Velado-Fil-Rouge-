@@ -15,13 +15,13 @@ export default {
       //
     };
   },
-  mounted() {
-    this.$store.dispatch("getCart");
-  },
   components: {
     shoppingCart,
     NavBar,
     Footer,
+  },
+  mounted() {
+    this.$store.dispatch("getCart");
   },
 };
 </script>

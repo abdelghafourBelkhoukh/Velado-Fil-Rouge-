@@ -13,6 +13,11 @@ export default createStore({
       firstname: localStorage.getItem("firstName") || "",
       lastname: localStorage.getItem("lastName") || "",
       email: localStorage.getItem("email") || "",
+      address: localStorage.getItem("address") || "",
+      city: localStorage.getItem("city") || "",
+      zip: localStorage.getItem("zip") || "",
+      country: localStorage.getItem("country") || "",
+
     },
     //uesr info
     showSideBar: false,
@@ -66,6 +71,8 @@ export default createStore({
     //search bar dashboard
     SreachBarTable: "",
     SearchDashboardData: [],
+    //login
+    logged : false,
   },
   getters: {},
   mutations: {
@@ -78,6 +85,10 @@ export default createStore({
     },
     logout(state) {
       localStorage.removeItem("id");
+      localStorage.removeItem("firstName");
+      localStorage.removeItem("lastName");
+      localStorage.removeItem("email");
+
       window.location.href = "/";
     },
     // start User
@@ -125,10 +136,14 @@ export default createStore({
           state.productData.image = product.image;
           state.productData.category = product.category;
 
-          let checkRank = [{ value: product.bestOffer, name: "bestOffer"}, { value: product.bestSells, name: "bestSells"}, { value: product.bestProduct, name: "bestProduct"}];   
-          state.productData.rank = checkRank.filter(function(item) {
+          let checkRank = [
+            { value: product.bestOffer, name: "bestOffer" },
+            { value: product.bestSells, name: "bestSells" },
+            { value: product.bestProduct, name: "bestProduct" },
+          ];
+          state.productData.rank = checkRank.filter(function (item) {
             return item.value == 1;
-          });    
+          });
         }
       });
     },

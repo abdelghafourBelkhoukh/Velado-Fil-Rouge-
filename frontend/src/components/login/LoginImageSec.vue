@@ -2,7 +2,7 @@
     <div class="section-image h-auto relative">
         <div class="md:bg-black absolute md:w-full md:h-full opacity-40">
         </div>
-        <div class="loginContainer  w-full h-auto flex justify-center s-small:py-20">
+        <div class="loginContainer  w-full h-auto flex justify-center s-small:py-32">
             <div class="loginForm bg-white sm:w-2/3 md:w-2/4 xl:w-1/3 h-auto flex justify-start flex-col px-8 py-14 rounded-lg sm:shadow-xl z-10">
                 <p class="text-gray-800 text-center text-lg font-bold">Login</p>
                 <div class="py-2">
@@ -48,10 +48,15 @@ export default {
                 .then((response) => {
                     console.log(response);
                     if (response.data.success) {
+                        this.$store.state.logged = true;
                         localStorage.setItem("id", response.data.UserData.id);
-                        localStorage.setItem("frirstName", response.data.UserData.firstname);
+                        localStorage.setItem("firstName", response.data.UserData.firstname);
                         localStorage.setItem("lastName", response.data.UserData.lastname);
                         localStorage.setItem("email", response.data.UserData.email);
+                        localStorage.setItem("address", response.data.UserData.address);
+                        localStorage.setItem("city", response.data.UserData.city);
+                        localStorage.setItem("zipcode", response.data.UserData.zip);
+                        localStorage.setItem("country", response.data.UserData.country);
                         localStorage.setItem("type", response.data.UserData.type);
                         this.$router.push("/");
                     } else {

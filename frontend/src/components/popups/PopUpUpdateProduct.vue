@@ -90,18 +90,18 @@
                 <label for="Image" class="text-sm text-gray-600"
                   >Product rating</label
                 >
-                <!-- {{this.$store.state.productData.rank[0].name}} -->
                 <select
                   class="w-full p-2 border-2 border-gray-400 rounded-lg"
                   id="Image"
+                  type="text"
                   v-model="ProductData.rank"
                 >
-                  <option
+                  <!-- <option
                     v-for="item in rankArray"
-                    :value="item.value"
-                    :selected="item.value = this.$store.state.productData.rank[0].name"
-                    :key="item.value"
-                  >
+                    :value="ProductData.rank = item.value"
+                    :selected="item.value == RankChanged"
+                  > -->
+                  <option v-for="item in rankArray" :value="item.value">
                     {{ item.name }}
                   </option>
                 </select>
@@ -175,10 +175,15 @@ export default {
         price: this.$store.state.productData.price,
         description: this.$store.state.productData.description,
         image: this.$store.state.productData.image,
-        rank: this.$store.state.productData.rank,
+        rank: this.$store.state.productData.rank[0].name,
       },
       rankArray: rankArray,
     };
+  },
+  computed: {
+    RankChanged() {
+      return this.$store.state.productData.rank[0].name;
+    },
   },
   methods: {
     popupUpdateProduct() {

@@ -15,11 +15,17 @@ const routes = [
   {
     path: "/Login",
     name: "Login",
+    meta: {
+      toLogin: true,
+    },
     component: () => import("../views/LoginView.vue"),
   },
   {
     path: "/Register",
     name: "Register",
+    meta: {
+      toLogin: true,
+    },
     component: () => import("../views/RegisterView.vue"),
   },
   {
@@ -30,6 +36,9 @@ const routes = [
   {
     path: "/Cart",
     name: "Cart",
+    meta: {
+      requiresAuth: true,
+    },
     component: () => import("../views/CartView.vue"),
   },
   {
@@ -37,6 +46,19 @@ const routes = [
     name: "categories",
     component: () => import("../views/CategoryView.vue"),
   },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "Notfound",
+    component: HomeView,
+  },
+  {
+    path: "/Checkout",
+    name: "Checkout",
+    meta: {
+      requiresAuth: true,
+    },
+    component: () => import("../views/CheckoutView.vue"),
+  }
 
   // {
   //   path: '/about',
@@ -48,9 +70,16 @@ const routes = [
   // }
 ];
 
+
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+router.beforeEach((to,_, next) => {
+  if (to.meta?.requiresAuth && !localStorage.getItem("id")) next({path: "/login"});
+  if(to.meta?.toLogin && localStorage.getItem("id")) next({path: "/"});
+  next();
+});
 
 export default router
