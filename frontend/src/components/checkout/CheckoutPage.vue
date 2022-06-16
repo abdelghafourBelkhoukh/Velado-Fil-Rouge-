@@ -154,7 +154,7 @@ export default{
                     quantity: NewQuantity,
                 })
             });
-            axios.post('http://localhost/fil-rouge/backend/Api/order/OrderController.php', {userID: id,})
+            axios.post('http://localhost/fil-rouge/backend/Api/order/OrderController.php', {userID: id,totalPrice: this.totalPriceItems})
             .then(response => {
                 console.log(response.data);
                 this.$store.state.cartData = [];

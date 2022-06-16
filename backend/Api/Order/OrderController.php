@@ -21,6 +21,8 @@ class OrderController {
 
     // get all orders
     public function getAllOrders() {
+        $result = $this->order->getAllOrders();
+        echo json_encode(array($result));
     }
 
     // add order
@@ -38,6 +40,14 @@ class OrderController {
 
     // update order
     public function updateOrder() {
+        $data = json_decode(file_get_contents("php://input"));
+        if(!empty($data->id)) {
+            if($this->order->updateOrder($data)){
+                echo json_encode(array("message" => "Order updated successfully."));
+            }
+        } else {
+            echo json_encode(array("message" => "Order not updated."));
+        }
     }
 
     // delete order

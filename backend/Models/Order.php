@@ -10,10 +10,11 @@ class Order {
     }
 
     public function addOrder($data) {
-        $sql = "INSERT INTO orders (userID) VALUES (:userID)";
+        $sql = "INSERT INTO orders (userID, totalPrice) VALUES (:userID, :totalPrice)";
         $stmt = $this->conn->prepare($sql);
     
         $stmt->bindParam(':userID', $data->userID);
+        $stmt->bindParam(':totalPrice', $data->totalPrice);
         if ($stmt->execute()) {
             $sql = "SELECT id FROM orders  ORDER BY ID DESC LIMIT 1";
             $stmt = $this->conn->prepare($sql);
@@ -41,7 +42,14 @@ class Order {
         return $result;
     }
 
-    public function UpdateStatus($data) {
+    public function getAllOrders() {
+        $sql = "SELECT o.id, o.added_at, o.status, o.totalPrice, c.firstname, c.lastname, c.city, c.address, c.country FROM `orders` o INNER JOIN customer c WHERE o.userID = c.id AND o.status = 'In processing'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function UpdateStatus($data) {   
         $status = 'order';
         $sql = "UPDATE cart SET status = :status, orderID = :orderID WHERE customerID = :userID AND status = 'cart'";
         $stmt = $this->conn->prepare($sql);
@@ -56,4 +64,19 @@ class Order {
             return false;
         }
     }
+
+    public function updateOrder($data) {
+        // var_dump($data);
+        // die();
+        $sql = "UPDATE orders SET status = :status WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':status', $data->status);
+        $stmt->bindParam(':id', $data->id);
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

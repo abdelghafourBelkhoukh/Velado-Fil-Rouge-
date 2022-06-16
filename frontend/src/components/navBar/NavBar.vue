@@ -49,7 +49,7 @@ export default {
         this.showMobileMenu = !this.showMobileMenu;
     },
     logout() {
-      this.$store.commit('logout')
+      this.$store.commit('logoutUser')
     }
   },
 };

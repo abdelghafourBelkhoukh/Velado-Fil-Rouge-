@@ -73,6 +73,8 @@ export default createStore({
     SearchDashboardData: [],
     //login
     logged: false,
+    //order
+    orderData: [],
   },
   getters: {},
   mutations: {
@@ -83,7 +85,7 @@ export default createStore({
       state.TableName = Name;
       if (window.innerWidth <= 768) state.showSideBar = !state.showSideBar;
     },
-    logout(state) {
+    logoutUser(state) {
       localStorage.removeItem("id");
       localStorage.removeItem("firstName");
       localStorage.removeItem("lastName");
@@ -322,6 +324,9 @@ export default createStore({
       state.user = user;
       state.logged = true;
     },
+    getOrders(state, orders) {
+      state.orderData = orders;
+    },
   },
   actions: {
     // start User
@@ -420,6 +425,32 @@ export default createStore({
         })
         .catch((error) => {
           console.log(error);
+        });
+    },
+    //get orders
+    async getOneOrders({ commit }) {
+      axios
+        .get(
+          "http://localhost/fil-rouge/backend/Api/Order/OrderController.php?id=" +
+            this.state.user.id
+        )
+        .then((res) => {
+          commit("getOrders", res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    //get orders
+    async getOrders({ commit }) {
+      axios
+        .get("http://localhost/fil-rouge/backend/Api/Order/OrderController.php")
+        .then((res) => {
+          commit("getOrders", res.data[0]);
+          console.log(res.data[0]);
+        })
+        .catch((err) => {
+          console.log(err);
         });
     },
   },
