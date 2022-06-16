@@ -109,6 +109,7 @@ export default {
   }
   .closed-menu {
     transform: translateX(-104%);
+    display: none;
     padding: 0;
     height: 0;
     transition: all 0.5s ease-out;

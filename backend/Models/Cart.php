@@ -47,7 +47,7 @@ class Cart extends Database{
     }
 
     public function DeleteFromCart($data){
-        $sql = "DELETE FROM cart WHERE productID = :product_id";
+        $sql = "DELETE FROM cart WHERE productID = :product_id AND status = 'cart'";
         $stmt = $this->conn->prepare($sql);
 
         $stmt->bindParam(':product_id', $data);

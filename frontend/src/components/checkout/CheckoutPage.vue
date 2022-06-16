@@ -157,6 +157,7 @@ export default{
             axios.post('http://localhost/fil-rouge/backend/Api/order/OrderController.php', {userID: id,})
             .then(response => {
                 console.log(response.data);
+                this.$store.state.cartData = [];
                 this.$router.push('/');
             })
             .catch(error => {

@@ -27,9 +27,10 @@ class OrderController {
     public function addOrder() { 
         $data = json_decode(file_get_contents("php://input"));
         if(!empty($data->userID)) {
-            $this->order->addOrder($data);
-            $this->order->UpdateStatus($data);
-            echo json_encode(array("message" => "Order added successfully."));
+            if($this->order->addOrder($data)){
+                $this->order->UpdateStatus($data);
+                echo json_encode(array("message" => "Order added successfully."));
+            }
         } else {
             echo json_encode(array("message" => "Order not added."));
         }
