@@ -14,7 +14,7 @@
             <li><router-link to="/">Home</router-link></li>
             <li>About</li>
             <li>Contact</li>
-            <li><router-link to="/Dashboard">Dashboard</router-link></li>
+            <!-- <li><router-link to="/Dashboard">Dashboard</router-link></li> -->
             </ul>
             <div class="login-signup-button flex w-full items-center flex-col md:flex-row md:justify-end bg-black pb-10 md:pb-0 md:pr-8">
               <!--cart icon-->

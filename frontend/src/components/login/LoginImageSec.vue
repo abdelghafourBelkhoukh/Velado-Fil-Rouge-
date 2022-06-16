@@ -43,29 +43,8 @@ export default {
     },
     methods: {
         Login() {
-            axios
-                .post("http://localhost/fil-rouge/backend/Api/Customer/Login.php", this.userData)
-                .then((response) => {
-                    console.log(response);
-                    if (response.data.success) {
-                        this.$store.state.logged = true;
-                        localStorage.setItem("id", response.data.UserData.id);
-                        localStorage.setItem("firstName", response.data.UserData.firstname);
-                        localStorage.setItem("lastName", response.data.UserData.lastname);
-                        localStorage.setItem("email", response.data.UserData.email);
-                        localStorage.setItem("address", response.data.UserData.address);
-                        localStorage.setItem("city", response.data.UserData.city);
-                        localStorage.setItem("zipcode", response.data.UserData.zip);
-                        localStorage.setItem("country", response.data.UserData.country);
-                        localStorage.setItem("type", response.data.UserData.type);
-                        this.$router.push("/");
-                    } else {
-                        alert("Wrong Email or Password");
-                    }
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+            this.$store.dispatch('Login', this.userData);
+            this.$router.push('/');
         },
     },
 }

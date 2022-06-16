@@ -45,7 +45,7 @@
                 </div>
                 
             <!--button add to card tailwind-->
-            <div class="w-full flex justify-center">
+            <div class="w-full flex justify-center" v-if="isLoggedIn">
                 <button class="btn bg-green-600 text-white px-8 py-4 w-3/4 rounded" @click="addToCart(productData.id)">Add To Cart</button>
             </div>
             <div class="px-10 pt-8">
@@ -104,6 +104,11 @@ export default {
             }
             this.$store.commit("addToCart", dataCart);
         }
+    },
+    computed: {
+        isLoggedIn() {
+            return this.$store.state.logged;
+        },
     },
 }
 </script>

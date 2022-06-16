@@ -34,7 +34,7 @@ class Cart extends Database{
     }
 
     public function GetCart($data){
-        $sql = "SELECT p.name, p.category, p.price, p.quantity, P.image, c.qty, c.productID FROM products p INNER JOIN cart c WHERE p.id = c.productID AND c.customerID = :user_id ORDER BY c.added_at DESC" ;
+        $sql = "SELECT p.name, p.category, p.price, p.quantity, P.image, c.qty, c.productID FROM products p INNER JOIN cart c WHERE p.id = c.productID AND c.customerID = :user_id AND c.status = 'cart' ORDER BY c.added_at DESC" ;
         $stmt = $this->conn->prepare($sql);
 
         $stmt->bindParam(':user_id', $data['userID']);

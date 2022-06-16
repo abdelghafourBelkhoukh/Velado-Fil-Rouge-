@@ -14,13 +14,13 @@
           </div>
           <!-- searchBar -->
           <!-- main -->
-          <DashboardStatistic v-if="$store.state.TableName==='Dashboard'"/>
+          <!-- <DashboardStatistic v-if="$store.state.TableName==='Dashboard'"/> -->
           <!-- main  -->
           
           <!-- tables -->
-            <div v-if="$store.state.TableName === 'Dashboard'">
+            <!-- <div v-if="$store.state.TableName === 'Dashboard'">
               <Dashboard />
-            </div>
+            </div> -->
             <div v-if="$store.state.TableName === 'Categories' ">
               <Categories />
             </div>

@@ -23,8 +23,10 @@
             <p class="new">{{ post.price }} DH/Kg</p>
           </div>
           <div class="items cart">
+            <div v-if="isLoggedIn">
             <i class="fa fa-shopping-cart"></i>
-            <button @click="(e) => addToCart(e, post.id)">ADD TO CART</button>
+              <button @click="(e)=>addToCart(e,post.id)" >ADD TO CART</button>
+            </div>
           </div>
         </div>
       </div>
@@ -58,6 +60,11 @@ export default {
       e.stopPropagation();
     },
   },
+  computed: {
+        isLoggedIn() {
+            return this.$store.state.logged;
+        },
+    },
 };
 </script>
 

@@ -82,7 +82,7 @@
                             </div>
                             <div class="mt-4">
                                 <button
-                                    class="w-full px-6 py-2 text-blue-200 bg-green-600 hover:bg-green-900">Submit</button>
+                                    class="w-full px-6 py-2 text-blue-200 bg-green-600 hover:bg-green-900" @click="addOrder(UserData.id)">Submit</button>
                             </div>
                         </div>
                     </div>
@@ -110,12 +110,15 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 
 export default{
     name: 'CheckoutPage',
     data(){
         return{
             UserData: {
+                id : localStorage.getItem('id'),
                 firstName: localStorage.getItem('firstName'),
                 lastName: localStorage.getItem('lastName'),
                 email: localStorage.getItem('email'),
@@ -141,6 +144,18 @@ export default{
     mounted() {
     this.$store.dispatch("getCart");
     },
+    methods: {
+        addOrder(id) {
+            axios.post('http://localhost/fil-rouge/backend/Api/order/OrderController.php', {userID: id,})
+            .then(response => {
+                console.log(response.data);
+                this.$router.push('/');
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        }
+    }
 }
 
 </script>

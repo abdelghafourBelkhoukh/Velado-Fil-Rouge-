@@ -17,11 +17,10 @@ export default createStore({
       city: localStorage.getItem("city") || "",
       zip: localStorage.getItem("zip") || "",
       country: localStorage.getItem("country") || "",
-
     },
     //uesr info
     showSideBar: false,
-    TableName: "Dashboard",
+    TableName: "Users",
     //product page
     showProductPage: false,
     //user
@@ -88,6 +87,10 @@ export default createStore({
       localStorage.removeItem("firstName");
       localStorage.removeItem("lastName");
       localStorage.removeItem("email");
+      localStorage.removeItem("address");
+      localStorage.removeItem("city");
+      localStorage.removeItem("zip");
+      localStorage.removeItem("country");
 
       window.location.href = "/";
     },
@@ -168,7 +171,6 @@ export default createStore({
       );
     },
     showProductPage(state) {
-      console.log("i'm here");
       state.showProductPage = !state.showProductPage;
     },
     // end Product
@@ -314,6 +316,11 @@ export default createStore({
           break;
       }
     },
+    //Login
+    Login(state, user) {
+      state.user = user;
+      state.logged = true;
+    },
   },
   actions: {
     // start User
@@ -389,5 +396,33 @@ export default createStore({
           console.log(err);
         });
     },
+    //login 
+    async Login({ commit }, data) {
+      axios
+          .post("http://localhost/fil-rouge/backend/Api/Customer/Login.php", data)
+          .then((response) => {
+              console.log(response);
+              if (response.data.success) {
+                  console.log(response.data.UserData);
+                  localStorage.setItem("id", response.data.UserData.id);
+                  localStorage.setItem("firstName", response.data.UserData.firstname);
+                  localStorage.setItem("lastName", response.data.UserData.lastname);
+                  localStorage.setItem("email", response.data.UserData.email);
+                  localStorage.setItem("address", response.data.UserData.address);
+                  localStorage.setItem("city", response.data.UserData.city);
+                  localStorage.setItem("zipcode", response.data.UserData.zip);
+                  localStorage.setItem("country", response.data.UserData.country);
+                  localStorage.setItem("type", response.data.UserData.type);
+                  commit("Login", response.data.UserData);
+
+                  
+              } else {
+                  alert("Wrong Email or Password");
+              }
+          })
+          .catch((error) => {
+              console.log(error);
+          });
   },
-});
+}
+  })
