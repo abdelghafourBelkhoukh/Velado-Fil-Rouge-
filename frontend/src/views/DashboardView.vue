@@ -3,7 +3,8 @@
 <!--popup-->
 <PopUpUser v-if="$store.state.popupUser"/>
 <PopUpUpdateUser v-if="$store.state.popupUpdateUser"/>
-<popupQuantity v-if="$store.state.popupQuantity"/>
+<popupAddQuantity v-if="$store.state.popupAddQuantity"/>
+<PopupSubQuantity v-if="$store.state.PopupSubQuantity"/>
 <PopUpProduct v-if="$store.state.popupProduct" />
 <PopUpUpdateProduct v-if="$store.state.popupUpdateProduct" />
 <popupDeliverer v-if="$store.state.popupDeliverer" />
@@ -21,7 +22,8 @@ import PopUpUser from '../components/popups/PopUpUser.vue';
 import DashboardNavBar  from '../components/dashboard/DashboardNavBar.vue'
 import DashboardContent from '../components/dashboard/DashboardContent.vue'
 import PopUpUpdateUser from '../components/popups/PopUpUpdateUser.vue';
-import popupQuantity from '@/components/popups/PopupQuantity.vue';
+import popupAddQuantity from '@/components/popups/PopupAddQuantity.vue';
+import PopupSubQuantity from '@/components/popups/PopupSubQuantity.vue';
 import PopUpProduct from '@/components/popups/PopUpProduct.vue';
 import PopUpUpdateProduct from '@/components/popups/PopUpUpdateProduct.vue';
 import popupDeliverer from '@/components/popups/PopupDeliverer.vue';
@@ -36,7 +38,8 @@ export default{
     DashboardContent,
     PopUpUser,
     PopUpUpdateUser,
-    popupQuantity,
+    popupAddQuantity,
+    PopupSubQuantity,
     PopUpProduct,
     PopUpUpdateProduct,
     popupDeliverer,

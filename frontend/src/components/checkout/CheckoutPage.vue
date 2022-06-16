@@ -146,6 +146,14 @@ export default{
     },
     methods: {
         addOrder(id) {
+            this.cartData.forEach((item) => {
+                let NewQuantity = 0;
+                NewQuantity = item.quantity - item.qty;
+                axios.put('http://localhost/fil-rouge/backend/Api/Stock/StockController.php', {
+                    id: item.productID,
+                    quantity: NewQuantity,
+                })
+            });
             axios.post('http://localhost/fil-rouge/backend/Api/order/OrderController.php', {userID: id,})
             .then(response => {
                 console.log(response.data);

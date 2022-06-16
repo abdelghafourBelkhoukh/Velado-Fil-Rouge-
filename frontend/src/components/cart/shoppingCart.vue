@@ -66,12 +66,8 @@
               @click="plus(product.productID)"
             ></i>
           </div>
-          <span class="text-center w-1/5 font-semibold text-sm">{{
-            product.price
-          }}</span>
-          <span class="text-center w-1/5 font-semibold text-sm">{{
-            product.price * product.qty
-          }}</span>
+          <span class="text-center w-1/5 font-semibold text-sm">{{product.price}}</span>
+          <span class="text-center w-1/5 font-semibold text-sm">{{product.price * product.qty}}</span>
         </div>
 
         <a href="#" class="flex font-semibold text-indigo-600 text-sm mt-10">
@@ -94,14 +90,6 @@
           >
           <span class="font-semibold text-sm">{{ totalPriceItems }} DH</span>
         </div>
-        <!-- <div>
-          <label class="font-medium inline-block mb-3 text-sm uppercase"
-            >Shipping</label
-          >
-          <select class="block p-2 text-gray-600 w-full text-sm">
-            <option>Standard shipping - $10.00</option>
-          </select>
-        </div>-->
         <div class="py-10">
           <label
             for="promo"
@@ -202,6 +190,9 @@ export default {
           console.log(response.data);
         });
     },
+  },
+  mounted() {
+    this.$store.dispatch("getCart");
   },
 };
 </script>

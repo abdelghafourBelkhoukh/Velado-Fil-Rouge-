@@ -20,8 +20,6 @@ export default {
     NavBar,
     Footer,
   },
-  mounted() {
-    this.$store.dispatch("getCart");
-  },
+  
 };
 </script>

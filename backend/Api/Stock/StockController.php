@@ -25,15 +25,16 @@ class StockController extends Database{
     
 
     //Add quantity to product
-    public function AddQuantity(){
+    public function UpdateQuantity(){
         $data = json_decode( file_get_contents("php://input"),true);
         // update product
-        if ($this->product->AddQuantity($data)){
+        if ($this->product->UpdateQuantity($data)){
             echo json_encode(array("message" => "product was updated."));
         } else {
             echo json_encode(array("message" => "Unable to update product."));
         }
     }
+
 }
 
 
@@ -45,5 +46,5 @@ $quatity = new StockController($db);
 
 if ($_SERVER['REQUEST_METHOD'] == 'PUT') 
 {
-    $quatity->AddQuantity();
+    $quatity->UpdateQuantity();
 }

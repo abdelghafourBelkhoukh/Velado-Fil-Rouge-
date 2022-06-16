@@ -116,7 +116,7 @@ class Products extends Database{
         }
     }
 
-    public function AddQuantity($data){
+    public function UpdateQuantity($data){
        
         $sql = "UPDATE products SET quantity = :quantity WHERE id = :id";
         $stmt = $this->conn->prepare($sql);

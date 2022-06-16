@@ -31,6 +31,11 @@
                                         <td class="py-4">
                                             <div class="flex flex-row justify-center">
                                                 <div class="flex flex-row justify-center">
+                                                    <button @click="substractQuantity(item.id)">
+                                                        <a href="#" class="text-grey-darkest hover:text-grey-dark px-2">
+                                                            <i class="fas fa-minus"></i>
+                                                        </a>
+                                                    </button>
                                                     <button @click="popupQuantity(item.id)">
                                                         <a href="#" class="text-grey-darkest hover:text-grey-dark px-2">
                                                             <i class="fas fa-plus"></i>
@@ -70,7 +75,11 @@ export default{
     methods:{
         popupQuantity(id){
             this.$store.commit('getQuantity',id)
-            this.$store.commit('popupQuantity');
+            this.$store.commit('popupAddQuantity');
+        },
+        substractQuantity(id){
+            this.$store.commit('getQuantity',id)
+            this.$store.commit('PopupSubQuantity');
         }
     }
 }

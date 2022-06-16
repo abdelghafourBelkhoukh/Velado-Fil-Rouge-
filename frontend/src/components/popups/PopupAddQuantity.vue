@@ -1,12 +1,12 @@
 <template>
     <!--model popup tailwind-->
-    <div class=" fixed bg-black opacity-50 w-screen h-screen top-0 left-0 z-10" @click="popupQuantity"></div>
+    <div class=" fixed bg-black opacity-50 w-screen h-screen top-0 left-0 z-10" @click="popupAddQuantity"></div>
     <div class="flex items-center justify-center absolute  w-screen h-screen ">
         <div class="modal z-30  bg-white md:w-1/3 px-4 py-8 rounded" id="modal-user" tabindex="-1" role="dialog" aria-labelledby="modal-user" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header ">
-                        <button @click="popupQuantity" class="w-full text-right">
+                        <button @click="popupAddQuantity" class="w-full text-right">
                             <span class="text-3xl text-red-500 font-bold" aria-hidden="true" >&times;</span>
                         </button>
                         <h5 class="modal-title  pb-8 text-xl font-medium text-center" id="modal-user">Add Quantity</h5>
@@ -23,7 +23,7 @@
                     <!--button close and save-->
                     <div class="modal-footer w-full pt-6 flex justify-end">
                         <button type="button" class="px-3 py-2 bg-black hover:bg-green-700 text-white rounded" @click="addQuantity()">Save</button>
-                        <button type="button" class=" bg-black hover:bg-red-700 px-3 py-2 text-white rounded ml-4" data-dismiss="modal" @click="popupQuantity">Close</button>
+                        <button type="button" class=" bg-black hover:bg-red-700 px-3 py-2 text-white rounded ml-4" data-dismiss="modal" @click="popupAddQuantity">Close</button>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
 import axios from 'axios';
 
 export default{
-    name:'PopupQuantity',
+    name:'PopupAddQuantity',
     data(){
         return{
             stock:{
@@ -50,20 +50,20 @@ export default{
         }
     },
     methods:{
-        popupQuantity(){
-            this.$store.commit('popupQuantity');
+        popupAddQuantity(){
+            this.$store.commit('popupAddQuantity');
         },
         addQuantity(){
             this.newStock.quantity = this.Quantity + this.stock.quantity;
-            if(!confirm("If you add a quantity, you will not be able to change it.")){
-                this.popupQuantity();
+            if(!confirm("Are you sure you want to add a quantity ?")){
+                this.popupAddQuantity();
                 return;
             } 
             axios.put('http://localhost/fil-rouge/backend/Api/Stock/StockController.php',this.newStock)
             .then(response => {
                 console.log(response.data);
                 this.$store.dispatch("GetProducts")
-                this.popupQuantity();
+                this.popupAddQuantity();
             })
         }
     }

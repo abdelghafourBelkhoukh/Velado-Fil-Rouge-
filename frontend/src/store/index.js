@@ -47,7 +47,8 @@ export default createStore({
     BestOffer: [],
     //------------
     //quantity
-    popupQuantity: false,
+    popupAddQuantity: false,
+    PopupSubQuantity: false,
     dataQuantity: {},
     //------------
 
@@ -71,7 +72,7 @@ export default createStore({
     SreachBarTable: "",
     SearchDashboardData: [],
     //login
-    logged : false,
+    logged: false,
   },
   getters: {},
   mutations: {
@@ -174,10 +175,12 @@ export default createStore({
       state.showProductPage = !state.showProductPage;
     },
     // end Product
-
     // start Quantity
-    popupQuantity(state) {
-      state.popupQuantity = !state.popupQuantity;
+    popupAddQuantity(state) {
+      state.popupAddQuantity = !state.popupAddQuantity;
+    },
+    PopupSubQuantity(state) {
+      state.PopupSubQuantity = !state.PopupSubQuantity;
     },
     getQuantity(state, id) {
       state.products.forEach((product) => {
@@ -206,7 +209,6 @@ export default createStore({
         }
       });
     },
-
     // end Deliverer
     // start Category
     GetCategories(state, categories) {
@@ -259,7 +261,6 @@ export default createStore({
         return product.productID !== id;
       });
     },
-
     //search
     Search(state, searchData) {
       if (state.productsData.length > 0) {
@@ -337,7 +338,6 @@ export default createStore({
         });
     },
     // end User
-
     // start Product
     async GetProducts({ commit }) {
       axios
@@ -396,33 +396,31 @@ export default createStore({
           console.log(err);
         });
     },
-    //login 
+    //login
     async Login({ commit }, data) {
       axios
-          .post("http://localhost/fil-rouge/backend/Api/Customer/Login.php", data)
-          .then((response) => {
-              console.log(response);
-              if (response.data.success) {
-                  console.log(response.data.UserData);
-                  localStorage.setItem("id", response.data.UserData.id);
-                  localStorage.setItem("firstName", response.data.UserData.firstname);
-                  localStorage.setItem("lastName", response.data.UserData.lastname);
-                  localStorage.setItem("email", response.data.UserData.email);
-                  localStorage.setItem("address", response.data.UserData.address);
-                  localStorage.setItem("city", response.data.UserData.city);
-                  localStorage.setItem("zipcode", response.data.UserData.zip);
-                  localStorage.setItem("country", response.data.UserData.country);
-                  localStorage.setItem("type", response.data.UserData.type);
-                  commit("Login", response.data.UserData);
-
-                  
-              } else {
-                  alert("Wrong Email or Password");
-              }
-          })
-          .catch((error) => {
-              console.log(error);
-          });
+        .post("http://localhost/fil-rouge/backend/Api/Customer/Login.php", data)
+        .then((response) => {
+          console.log(response);
+          if (response.data.success) {
+            console.log(response.data.UserData);
+            localStorage.setItem("id", response.data.UserData.id);
+            localStorage.setItem("firstName", response.data.UserData.firstname);
+            localStorage.setItem("lastName", response.data.UserData.lastname);
+            localStorage.setItem("email", response.data.UserData.email);
+            localStorage.setItem("address", response.data.UserData.address);
+            localStorage.setItem("city", response.data.UserData.city);
+            localStorage.setItem("zipcode", response.data.UserData.zip);
+            localStorage.setItem("country", response.data.UserData.country);
+            localStorage.setItem("type", response.data.UserData.type);
+            commit("Login", response.data.UserData);
+          } else {
+            alert("Wrong Email or Password");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
-}
-  })
+});
