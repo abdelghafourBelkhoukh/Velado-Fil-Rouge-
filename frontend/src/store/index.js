@@ -354,7 +354,6 @@ export default createStore({
           "http://localhost/fil-rouge/backend/Api/Product/ProductController.php"
         )
         .then((res) => {
-          console.log(res.data);
           commit("GetProducts", res.data);
           commit("filterProducts", res.data);
         })
@@ -466,7 +465,6 @@ export default createStore({
         )
         .then((res) => {
           commit("getOrders", res.data[0]);
-          console.log(res.data[0]);
         })
         .catch((err) => {
           console.log(err);

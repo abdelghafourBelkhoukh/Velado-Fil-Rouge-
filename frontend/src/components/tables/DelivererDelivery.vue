@@ -40,7 +40,7 @@
                     </button>
                 </div>
                 <span class="text-center text-2xl font-semibold pb-4 sm:pb-8">Order details</span>
-                <span class=" text-lg font-medium sm:pl-10">Order N° :</span>
+                <span class=" text-lg font-medium sm:pl-10">Customer Name :</span>
                 <span class="pl-4  py-3 sm:text-center">{{DeliveryData.firstname +' '+DeliveryData.lastname}}</span>
                 <span class=" text-lg font-medium sm:pl-10">Address :</span>
                 <span class="pl-4  py-3 sm:text-center">{{DeliveryData.address +', '+DeliveryData.city+', '+DeliveryData.country}}</span>
