@@ -74,6 +74,7 @@ export default createStore({
     //login
     logged: false,
     //order
+    deliveryData: [],
     orderData: [],
   },
   getters: {},
@@ -324,6 +325,9 @@ export default createStore({
       state.user = user;
       state.logged = true;
     },
+    getDelivery(state, delivery) {
+      state.deliveryData = delivery;
+    },
     getOrders(state, orders) {
       state.orderData = orders;
     },
@@ -442,9 +446,24 @@ export default createStore({
         });
     },
     //get orders
+    async getDelivery({ commit }) {
+      axios
+        .get(
+          "http://localhost/fil-rouge/backend/Api/Order/OrderController.php?table=Delivery"
+        )
+        .then((res) => {
+          commit("getDelivery", res.data[0]);
+          console.log(res.data[0]);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     async getOrders({ commit }) {
       axios
-        .get("http://localhost/fil-rouge/backend/Api/Order/OrderController.php")
+        .get(
+          "http://localhost/fil-rouge/backend/Api/Order/OrderController.php?table=Orders"
+        )
         .then((res) => {
           commit("getOrders", res.data[0]);
           console.log(res.data[0]);

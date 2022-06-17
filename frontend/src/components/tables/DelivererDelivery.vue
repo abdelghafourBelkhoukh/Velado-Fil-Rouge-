@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="flex justify-center px-6 py-8">
-            <div class="text-red-700 text-2xl text-center font-bold">Orders</div>
+            <div class="text-red-700 text-2xl text-center font-bold">Delivery</div>
         </div>
         <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2 h-auto">
             <div class="rounded shadow bg-white  w-full h-auto">
@@ -39,24 +39,20 @@
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
-                <span class="text-center text-2xl font-semibold pb-4 ">Order details</span>
-                <span class=" text-lg font-medium sm:pl-10">Cudtomer Name :</span>
-                <span class="pl-4  py-3 sm:text-center">{{OrderData.firstname +' '+OrderData.lastname}}</span>
+                <span class="text-center text-2xl font-semibold pb-4 sm:pb-8">Order details</span>
+                <span class=" text-lg font-medium sm:pl-10">Order N° :</span>
+                <span class="pl-4  py-3 sm:text-center">{{DeliveryData.firstname +' '+DeliveryData.lastname}}</span>
                 <span class=" text-lg font-medium sm:pl-10">Address :</span>
-                <span class="pl-4  py-3 sm:text-center">{{OrderData.address +', '+OrderData.city+', '+OrderData.country}}</span>
+                <span class="pl-4  py-3 sm:text-center">{{DeliveryData.address +', '+DeliveryData.city+', '+DeliveryData.country}}</span>
                 <span class=" text-lg font-medium sm:pl-10">Order Date :</span>
-                <span class="pl-4  py-3 sm:text-center">{{OrderData.added_at}}</span>
+                <span class="pl-4  py-3 sm:text-center">{{DeliveryData.added_at}}</span>
                 <span class=" text-lg font-medium sm:pl-10">Order Status :</span>
-                <span class="pl-4  py-3 sm:text-center">{{OrderData.status}}</span>
+                <span class="pl-4  py-3 sm:text-center">{{DeliveryData.status}}</span>
                 <span class=" text-lg font-medium sm:pl-10">Total Price :</span>
-                <span class="pl-4  py-3 sm:text-center">{{OrderData.totalPrice}} DH</span>
-                <div class="flex justify-center mt-5">
-                    <!--buttons for accept or refuse order-->
-                    <button class="bg-white text-green-500  text-xl py-2 px-4 rounded-full" @click="acceptOrder(OrderData.id)">
-                        <i class="fas fa-check"><span class="ml-1">Accept</span></i>
-                    </button>
-                    <button class="bg-white text-red-500  text-xl py-2 px-4 rounded-full" @click="refuseOrder">
-                        <i class="fas fa-times"><span class="ml-1">Refuse</span></i>
+                <span class="pl-4  py-3 sm:text-center">{{DeliveryData.totalPrice}} DH</span>
+                <div class="flex justify-center">
+                    <button class="bg-green-500 text-white font-normal text-xl py-2 px-4 rounded-xl" @click="delivered(DeliveryData.id)">
+                        Delivered
                     </button>
 
                 </div>  
@@ -68,20 +64,20 @@
 <script>
 import axios from 'axios';
 export default{
-    name:'DelivererOrders',
+    name:'DelivererDelivery',
     data(){
         return{
-            OrderData:'',
+            DeliveryData:'',
             showDetails:false,
         }
     },
-    mounted(){
-        this.$store.dispatch("getOrders");
-    },
     computed:{
         orderData(){
-            return this.$store.state.orderData
+            return this.$store.state.deliveryData
         }
+    },
+    mounted(){
+        this.$store.dispatch("getDelivery");
     },
     methods:{
         ShowDetails(){
@@ -90,19 +86,20 @@ export default{
         getDetailsData(id){
             console.log(id);
             this.ShowDetails();
-            this.OrderData = this.$store.state.orderData.find(item => item.id == id);
+            this.DeliveryData = this.$store.state.deliveryData.find(item => item.id == id);
         },
-        acceptOrder(orderID){
-            axios.put("http://localhost/fil-rouge/backend/Api/Order/OrderController.php?confirmation=Accepted",{
-                id:orderID,
+        delivered(id){
+            axios.put("http://localhost/fil-rouge/backend/Api/Order/OrderController.php?confirmation=Delivered",{
+                id:id,
+                status:'Delivered'
             }).then(response => {
                 console.log(response.data);
-                this.$store.dispatch('getOrders');
+                this.$store.dispatch('getDelivery');
                 this.ShowDetails();
             }).catch(error => {
                 console.log(error);
             })
-        },
+        }
     }
 
 }

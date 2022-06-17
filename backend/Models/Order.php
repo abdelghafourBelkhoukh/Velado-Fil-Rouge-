@@ -43,7 +43,13 @@ class Order {
     }
 
     public function getAllOrders() {
-        $sql = "SELECT o.id, o.added_at, o.status, o.totalPrice, c.firstname, c.lastname, c.city, c.address, c.country FROM `orders` o INNER JOIN customer c WHERE o.userID = c.id AND o.status = 'In processing'";
+        $sql = "SELECT o.id, o.added_at, o.status, o.totalPrice, c.firstname, c.lastname, c.city, c.address, c.country FROM `orders` o INNER JOIN customer c WHERE o.userID = c.id AND o.status = 'In processing' And o.confirmationOrder = 'In processing'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getAllDelivery() {
+        $sql = "SELECT o.id, o.added_at, o.status, o.totalPrice, c.firstname, c.lastname, c.city, c.address, c.country FROM `orders` o INNER JOIN customer c WHERE o.userID = c.id AND o.status = 'In processing' And o.confirmationOrder = 'Accepted'";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -72,6 +78,19 @@ class Order {
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':status', $data->status);
         $stmt->bindParam(':id', $data->id);
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    
+    public function ConfirmationOrder($data) {
+        $sql = "UPDATE orders SET confirmationOrder = :status WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':status', $data['confirmationOrder']);
+        $stmt->bindParam(':id', $data['id']);
         if ($stmt->execute()) {
             return true;
         } else {
