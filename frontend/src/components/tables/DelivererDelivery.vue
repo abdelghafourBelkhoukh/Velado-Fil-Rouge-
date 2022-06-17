@@ -19,7 +19,7 @@
                             <td class="py-4">{{item.id}}</td>
                             <td class="py-4 hidden md:block">{{item.added_at}}</td>
                             <td class="py-4">
-                                    <button class="bg-white text-red-500 font-bold w-full rounded-full" @click="getDetailsData(item.id)">
+                                    <button class="bg-white text-black font-bold w-full rounded-full" @click="getDetailsData(item.id)">
                                         <i class="fas fa-eye mr-2"></i>
                                         See More
                                     </button>
@@ -35,7 +35,7 @@
             <div class="w-full md:w-2/3 lg:w-1/3 h-[90vh] bg-white mx-4 px-4 flex flex-col rounded-2xl">
                 <!--button of close-->
                 <div class="flex justify-end">
-                    <button class="bg-white text-red-500 font-bold text-5xl py-2 px-4 rounded-full" @click="ShowDetails">
+                    <button class="bg-white text-red-700 font-bold text-5xl py-2 px-4 rounded-full" @click="ShowDetails">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
@@ -84,7 +84,6 @@ export default{
             this.showDetails = !this.showDetails;
         },
         getDetailsData(id){
-            console.log(id);
             this.ShowDetails();
             this.DeliveryData = this.$store.state.deliveryData.find(item => item.id == id);
         },

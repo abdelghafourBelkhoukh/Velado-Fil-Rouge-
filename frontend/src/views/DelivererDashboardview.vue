@@ -9,6 +9,7 @@
                 <div class="flex flex-col h-full justify-between">
                     <div class="flex flex-col h-full justify-between">
                         <DelivererDelivery v-if="this.$store.state.TableName === 'Delivery'"/>
+                        <OrdersHistory v-if="$store.state.TableName === 'OrdersHistory'"/>
                     </div>
                 </div>
             </div>
@@ -21,16 +22,17 @@
 import NavBar from '../components/dashboard/DashboardNavBar.vue';
 import DelivererDashboardSideBar from '../components/dashboard/DelivererDashboardSideBar.vue';
 import DelivererDelivery from '@/components/tables/DelivererDelivery.vue';
+import OrdersHistory from '@/components/tables/OrdersHistory.vue';
 export default {
     name: "DelivererDashboardview",
-    components: { NavBar, DelivererDashboardSideBar, DelivererDelivery },
+    components: { NavBar, DelivererDashboardSideBar, DelivererDelivery, OrdersHistory },
     data() {
         return {
-            TableName: "Orders"
+            //
         };
     },
     mounted() {
-        this.$store.commit("changeTableName", "Orders");
+        this.$store.commit("changeTableName", "Delivery");
     },
 };
 </script>

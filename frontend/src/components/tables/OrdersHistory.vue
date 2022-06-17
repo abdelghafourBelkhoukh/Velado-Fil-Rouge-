@@ -10,8 +10,8 @@
                         <thead class="bg-black text-white text-normal">
                         <tr class="py-2 h-12">
                             <th scope="col">Order N°</th>
-                            <th scope="col">Customer Name</th>
-                            <th scope="col">Order Date</th>
+                            <th scope="col" class="hidden">Customer Name</th>
+                            <th scope="col" class="hidden">Order Date</th>
                             <th scope="col">Order Detailes</th>
                             <th scope="col">Status</th>
                         </tr>
@@ -19,8 +19,8 @@
                         <tbody>
                         <tr v-for="item in OrderData" class="border-b">
                             <td class="py-4">{{item.id}}</td>
-                            <td class="py-4">{{item.firstname +' '+item.lastname}}</td>
-                            <td class="py-4">{{item.added_at}}</td>
+                            <td class="py-4 hidden ">{{item.firstname +' '+item.lastname}}</td>
+                            <td class="py-4 hidden ">{{item.added_at}}</td>
                             <td class="py-4">
                                 <button class="bg-white text-black font-bold w-full rounded-full" @click="getOrderDetailsData(item.id)">
                                         <i class="fas fa-eye mr-2"></i>
@@ -38,14 +38,14 @@
         <!-- order details  -->
         <div v-if="showOrderDetails" class="w-full h-full bg-black opacity-60 absolute top-0 left-0"></div>
         <div v-if="showOrderDetails" class="w-full h-full absolute top-0 left-0 flex justify-center items-center">
-            <div class="w-full md:w-2/3 lg:w-1/3 h-[90vh] bg-white mx-4 px-4 py-8 flex flex-col rounded-2xl">
+            <div class="w-full md:w-2/3 lg:w-1/3 h-[95vh] bg-white mx-4 px-4 py-4 flex flex-col rounded-2xl">
                 <!--button of close-->
                 <div class="flex justify-end">
-                    <button class="bg-white text-red-700 font-bold text-5xl py-2 px-4 rounded-full" @click="ShowOrderDetails">
+                    <button class="bg-white text-red-700 font-bold text-5xl px-4 rounded-full" @click="ShowOrderDetails">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
-                <span class="text-center text-2xl font-semibold pb-8 ">Order details</span>
+                <span class="text-center text-2xl font-semibold pb-2 md:pb-8">Order details</span>
                 <span class=" text-lg font-medium sm:pl-10">Customer Name :</span>
                 <span class="pl-4  py-3 sm:text-center">{{OrderDetailsData.firstname +' '+OrderDetailsData.lastname}}</span>
                 <span class=" text-lg font-medium sm:pl-10">Address :</span>
@@ -54,6 +54,9 @@
                 <span class="pl-4  py-3 sm:text-center">{{OrderDetailsData.added_at}}</span>
                 <span class=" text-lg font-medium sm:pl-10">Order Status :</span>
                 <span class="pl-4  py-3 sm:text-center">{{OrderDetailsData.status}}</span>
+                <span class=" text-lg font-medium sm:pl-10">Status :</span>
+                <span class="pl-4  py-3 sm:text-center text-green-600 font-medium" v-if="OrderDetailsData.confirmationOrder=='Accepted'">{{OrderDetailsData.status}}</span>
+                <span class="pl-4  py-3 sm:text-center text-red-600 font-medium" v-if="OrderDetailsData.confirmationOrder=='refused'">{{OrderDetailsData.confirmationOrder}}</span>
                 <span class=" text-lg font-medium sm:pl-10">Total Price :</span>
                 <span class="pl-4  py-3 sm:text-center">{{OrderDetailsData.totalPrice}} DH</span> 
             </div>
