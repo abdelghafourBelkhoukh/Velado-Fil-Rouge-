@@ -482,7 +482,6 @@ export default createStore({
         )
         .then((res) => {
           commit("getOrdersHistory", res.data[0]);
-          console.log(res.data[0]);
         })
         .catch((err) => {
           console.log(err);
