@@ -12,21 +12,27 @@
                             <li class="w-auto cursor-pointer" v-for="category in $store.state.categories" @click="getProductByCategory(category.name)" >{{category.name}}</li>
                         </ul>
                     </div>
-                <i class="fa-solid fa-caret-down ml-2" @mouseover="CategorieContent()"></i>
+                <i class="fa-solid fa-caret-down ml-2" @click="CategorieContent()"></i>
             </li>
             <li>Orders</li>
             <li>Promos</li>
         </ul>
-            <div class="flex justify-center w-full h-full items-center block md:hidden">
+            <div class="flex justify-center w-full h-full items-center md:hidden">
                 <i v-if="!SubNav" class="fa-solid fa-caret-down block md:hidden" @click="SubNav=true"></i>
                 <i v-if="SubNav" class="fa-solid fa-caret-up block md:hidden" @click="SubNav=false"></i>
             </div>
     </div>
-    <div v-if="SubNav" class="SubNavContainer2 w-full flex justify-center p-4 block md:hidden items-center z-[111]">
+    <div v-if="SubNav" class="SubNavContainer2 w-full flex justify-center p-4 md:hidden items-center z-[111]">
         <ul class="leading-[5rem]">
-            <li>
+            <li class="relative">
                 <span>Categories</span>
-                <i class="fa-solid fa-caret-down ml-2"></i>
+                    <div v-if="showCategory" class="contentCategories max-w-2xl bg-white h-[40vh] w-full p-4 absolute z-20 flex justify-center md:block ">
+                        <ul class="grid grid-rows-3 grid-flow-col w-auto">
+                            <li class="w-auto cursor-pointer" @click="getProductByCategory('All_Categories')">All</li>
+                            <li class="w-auto cursor-pointer" v-for="category in $store.state.categories" @click="getProductByCategory(category.name)" >{{category.name}}</li>
+                        </ul>
+                    </div>
+                <i class="fa-solid fa-caret-down ml-2" @click="CategorieContent()"></i>
             </li>
             <li>Orders</li>
             <li>Promos</li>
@@ -63,6 +69,7 @@ export default {
             console.log(category);
         }
         this.$router.push("/Category/"+category);
+        this.SubNav=false;
     },
   },
 }

@@ -1,9 +1,12 @@
 <template>
     <div class="">
-        <div class="nav-menu flex-col w-full md:flex-row py-2">
+      <div class="nav-menu flex-col w-full md:flex-row py-2">
         <div class="hamberger h-[10vh] w-full flex items-center justify-between md:w-2/5 ">
-            <div class="logo w-auto ml-10 "><router-link to="/" ><img src="../../assets/images/logo.png" alt=""></router-link></div>
-            <i class="fa-solid fa-bars text-base" @click="showMenu()"></i>
+          <div class="logo w-auto ml-10 "><router-link to="/" ><img src="../../assets/images/logo.png" alt=""></router-link></div>
+            <div class="flex items-center justify-between w-28 md:w-auto ">
+              <router-link to="/Cart" class="block md:hidden text-2xl" ><i class="fa-solid fa-shopping-cart md:block px-4"></i></router-link>
+              <i class="fa-solid fa-bars text-2xl" @click="showMenu()"></i>
+            </div>
         </div>
         <div
             class="nav-content bg-black md:w-3/5 w-[110%] "
@@ -19,13 +22,13 @@
             <div class="login-signup-button flex w-full items-center flex-col md:flex-row md:justify-end bg-black pb-10 md:pb-0 md:pr-8">
               <!--cart icon-->
               <div v-if="logged">
-                <button class="btn btn-primary mr-4 px-4 py-2 rounded bg-white hover:bg-black text-black hover:text-white font-medium" @click="logout">Log out</button>
+                <button class="btn btn-primary md:mr-4 px-4 py-2 rounded md:bg-white md:hover:bg-black md:text-black text-white md:hover:text-white font-medium" @click="logout">Log out</button>
               </div>
               <div v-if="!logged">
                 <a href="" class="px-2"><router-link to="/Login">Login</router-link></a>
                 <a href="" class="px-2"><router-link to="/Register">Sign up</router-link></a>
               </div>
-              <router-link to="/Cart" ><i class="fa-solid fa-shopping-cart md:block px-4"></i></router-link>
+              <router-link to="/Cart" class="hidden md:block text-2xl"><i class="fa-solid fa-shopping-cart md:block px-4"></i></router-link>
             </div>
         </div>
         </div>
