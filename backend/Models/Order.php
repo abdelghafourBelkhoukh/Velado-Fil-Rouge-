@@ -60,7 +60,7 @@ class Order {
 
     public function getOrdersHistory() {
         $sql = "SELECT o.id, o.added_at, o.status, o.totalPrice, c.firstname, c.lastname, c.city, c.address, c.country, p.name, p.price, ca.qty, o.confirmationOrder 
-        FROM ((`orders` o INNER JOIN customer c ON o.userID = c.id AND o.status = 'Delivered' And o.confirmationOrder = 'Accepted' OR o.status = 'In processing' And o.confirmationOrder = 'Refused') 
+        FROM ((`orders` o INNER JOIN customer c ON o.userID = c.id AND o.status = 'Delivered' And o.confirmationOrder = 'Accepted' OR o.userID = c.id AND o.status = 'In processing' And o.confirmationOrder = 'Refused') 
         INNER JOIN cart ca ON ca.orderID = o.id INNER JOIN products p ON p.id = ca.productID)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
