@@ -32,6 +32,12 @@ class OrderController
         $result = $this->order->getAllOrders();
         echo json_encode(array($result));
     }
+    public function getOrdersHistory()
+    {
+        $result = $this->order->getOrdersHistory();
+        echo json_encode(array($result));
+    }
+
 
     // add order
     public function addOrder()
@@ -99,8 +105,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
         if ($_GET['table'] == 'Delivery')
             $orderController->getDelivry();
-        else
+        elseif ($_GET['table'] == 'Orders')
             $orderController->getOrders();
+            else
+            $orderController->getOrdersHistory();
         break;
     case 'POST':
         $orderController->addOrder();

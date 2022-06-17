@@ -39,6 +39,10 @@
             <div v-if="$store.state.TableName === 'Orders' ">
               <Orders />
             </div>
+            <div v-if="$store.state.TableName === 'OrdersHistory' ">
+              <OrdersHistory />
+            </div>
+
 
           <!-- tables -->
           
@@ -62,7 +66,8 @@ import Users from '../tables/Users.vue';
 import deliverers from '../tables/deliverers.vue';
 import Products from '../tables/Products.vue';
 import searchBarDashboard from './searchBarDashboard/SearchBarDashboard.vue';
-import Orders from '../tables/DelivererOrders.vue';
+import Orders from '../tables/Orders.vue';
+import OrdersHistory from '../tables/OrdersHistory.vue';
 
 
 
@@ -85,7 +90,8 @@ export default{
     Categories,
     Products,
     searchBarDashboard,
-    Orders
+    Orders,
+    OrdersHistory
 }
 }
 

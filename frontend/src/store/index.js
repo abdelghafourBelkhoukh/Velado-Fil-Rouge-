@@ -76,6 +76,7 @@ export default createStore({
     //order
     deliveryData: [],
     orderData: [],
+    historyData: [],
   },
   getters: {},
   mutations: {
@@ -331,6 +332,9 @@ export default createStore({
     getOrders(state, orders) {
       state.orderData = orders;
     },
+    getOrdersHistory(state, history) {
+      state.historyData = history;
+    },
   },
   actions: {
     // start User
@@ -465,6 +469,19 @@ export default createStore({
         )
         .then((res) => {
           commit("getOrders", res.data[0]);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    
+    async getOrdersHistory({ commit }) {
+      axios
+        .get(
+          "http://localhost/fil-rouge/backend/Api/Order/OrderController.php?table=History"
+        )
+        .then((res) => {
+          commit("getOrdersHistory", res.data[0]);
         })
         .catch((err) => {
           console.log(err);
