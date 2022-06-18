@@ -84,7 +84,7 @@
                     </button>
                 </div>
                 <span class="text-center text-2xl font-semibold pb-8 ">Products details</span>
-                <div>
+                <div class="h-[305vh] overflow-y-scroll">
                     <table class="table text-grey-darkest text-center w-full h-full">
                         <thead class="bg-black text-white text-normal">
                         <tr class="py-2 h-12">

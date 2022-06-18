@@ -50,11 +50,88 @@ export default {
             },
         };
     },
-    methods: {
-        Login() {
-            this.$store.dispatch('Login', this.userData);
-            this.$router.push('/');
+    computed: {
+        logged() {
+            return this.$store.state.logged;
         },
+    },
+    methods: {
+        async Login() {
+
+        //login customer
+            if(this.userData.role == 'Customer'){
+            axios
+        .post(
+            "http://localhost/fil-rouge/backend/Api/Auth/AuthController.php?action=login",
+            this.userData
+        )
+        .then((response) => {
+            console.log(response);
+            if (response.data.success) {
+            console.log(response.data.UserData);
+            localStorage.setItem("id", response.data.UserData.id);
+            localStorage.setItem("firstName", response.data.UserData.firstname);
+            localStorage.setItem("lastName", response.data.UserData.lastname);
+            localStorage.setItem("email", response.data.UserData.email);
+            localStorage.setItem("address", response.data.UserData.address);
+            localStorage.setItem("city", response.data.UserData.city);
+            localStorage.setItem("zipcode", response.data.UserData.zip);
+            localStorage.setItem("country", response.data.UserData.country);
+            localStorage.setItem("type", response.data.UserData.type);
+            this.$store.commit("LoginCustomer", response.data.UserData);
+            this.$router.push("/");
+            } else {
+            alert("Wrong Email or Password");
+            return false;
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+
+        //login deliverer
+            }else if(this.userData.role == 'Deliverer'){
+                axios.post(
+                    "http://localhost/fil-rouge/backend/Api/Auth/AuthController.php?action=login",
+                    this.userData
+                        )
+                .then((response) => {
+                    console.log(response);
+                    if (response.data.success) {
+                    console.log(response.data.UserData);
+                    localStorage.setItem("id", response.data.UserData.id);
+                    localStorage.setItem("firstName", response.data.UserData.firstname);
+                    localStorage.setItem("lastName", response.data.UserData.lastname);
+                    this.$store.commit("LoginDeliverer", response.data.UserData);
+                    this.$router.push("/Deliverer_Dashboard");
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+
+        // login admin
+            }else if(this.userData.role == 'Admin'){
+            axios.post(
+                    "http://localhost/fil-rouge/backend/Api/Auth/AuthController.php?action=login",
+                    this.userData
+                        )
+                .then((response) => {
+                    console.log(response);
+                    if (response.data.success) {
+                    console.log(response.data.UserData);
+                    localStorage.setItem("id", response.data.UserData.id);
+                    localStorage.setItem("firstName", response.data.UserData.firstname);
+                    localStorage.setItem("lastName", response.data.UserData.lastname);
+                    this.$store.commit("LoginAdmin", response.data.UserData);
+                    this.$router.push("/Dashboard");
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+        }
     },
 }
 </script>

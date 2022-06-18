@@ -42,7 +42,8 @@ export default{
             this.$store.commit('changeTableName',TableName);
         },
         logout(){
-            this.$store.commit('logout');
+            this.$store.commit('logoutDeliverer');
+            this.$router.push("/login");
         }
     }
 

@@ -31,10 +31,20 @@ class Person extends Database
     }
     
     
-    public function LoginCustomer($data){
-        $sql = "SELECT * FROM customer WHERE email = :email AND password = :password";
+    public function Login($data){
+        if ($data['role'] == 'Customer') {
+            $sql = "SELECT * FROM customer WHERE email = :email AND password = :password";
+        } elseif ($data['role'] == 'Admin') {
+            $sql = "SELECT * FROM admin WHERE email = :email AND password = :password";
+        } else {
+            $sql = "SELECT * FROM Deliverers WHERE email = :email AND password = :password";
+        }
+
         $stmt = $this->conn->prepare($sql);
-        if ($stmt->execute($data)) {
+        $stmt->bindParam(':email', $data['email']);
+        $stmt->bindParam(':password', $data['password']);
+
+        if ($stmt->execute()) {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($row) {
                 return $row;

@@ -90,7 +90,8 @@ export default{
             this.$store.commit('changeTableName',TableName);
         },
         logout(){
-            this.$store.commit('logout');
+            this.$store.commit('logoutAdmin');
+            this.$router.push("/login");
         }
     }
 

@@ -8,16 +8,19 @@ export default createStore({
     alertCart: "",
     cartData: [],
     //uesr info
-    user: {
-      id: localStorage.getItem("id") || "",
-      firstname: localStorage.getItem("firstName") || "",
-      lastname: localStorage.getItem("lastName") || "",
-      email: localStorage.getItem("email") || "",
-      address: localStorage.getItem("address") || "",
-      city: localStorage.getItem("city") || "",
-      zip: localStorage.getItem("zip") || "",
-      country: localStorage.getItem("country") || "",
-    },
+    // user: {
+    //   id: localStorage.getItem("id") || "",
+    //   firstname: localStorage.getItem("firstName") || "",
+    //   lastname: localStorage.getItem("lastName") || "",
+    //   email: localStorage.getItem("email") || "",
+    //   address: localStorage.getItem("address") || "",
+    //   city: localStorage.getItem("city") || "",
+    //   zip: localStorage.getItem("zip") || "",
+    //   country: localStorage.getItem("country") || "",
+    // },
+    user: {},
+    admin: {},
+    deliverer: {},
     //uesr info
     showSideBar: false,
     TableName: "Users",
@@ -73,6 +76,8 @@ export default createStore({
     SearchDashboardData: [],
     //login
     logged: false,
+    adminLogged: false,
+    delivererLogged: false,
     //order
     deliveryData: [],
     orderData: [],
@@ -88,16 +93,16 @@ export default createStore({
       if (window.innerWidth <= 768) state.showSideBar = !state.showSideBar;
     },
     logoutUser(state) {
-      localStorage.removeItem("id");
-      localStorage.removeItem("firstName");
-      localStorage.removeItem("lastName");
-      localStorage.removeItem("email");
-      localStorage.removeItem("address");
-      localStorage.removeItem("city");
-      localStorage.removeItem("zip");
-      localStorage.removeItem("country");
-
+      localStorage.clear();
       window.location.href = "/";
+    },
+    logoutAdmin(state) {
+      localStorage.clear();
+      state.adminLogged = false;
+    },
+    logoutDeliverer(state) {
+      localStorage.clear();
+      state.delivererLogged = false;
     },
     // start User
     GetUsers(state, users) {
@@ -322,10 +327,20 @@ export default createStore({
       }
     },
     //Login
-    Login(state, user) {
+    LoginCustomer(state, user) {
       state.user = user;
       state.logged = true;
     },
+    LoginAdmin(state, admin) {
+      state.admin = admin;
+      state.adminLogged = true;
+    },
+    LoginDeliverer(state, deliverer) {
+      console.log(deliverer);
+      state.deliverer = deliverer;
+      state.delivererLogged = true;
+    },
+    //end Login
     getDelivery(state, delivery) {
       state.deliveryData = delivery;
     },
@@ -408,32 +423,7 @@ export default createStore({
           console.log(err);
         });
     },
-    //login
-    async Login({ commit }, data) {
-      axios
-        .post("http://localhost/fil-rouge/backend/Api/Customer/Login.php", data)
-        .then((response) => {
-          console.log(response);
-          if (response.data.success) {
-            console.log(response.data.UserData);
-            localStorage.setItem("id", response.data.UserData.id);
-            localStorage.setItem("firstName", response.data.UserData.firstname);
-            localStorage.setItem("lastName", response.data.UserData.lastname);
-            localStorage.setItem("email", response.data.UserData.email);
-            localStorage.setItem("address", response.data.UserData.address);
-            localStorage.setItem("city", response.data.UserData.city);
-            localStorage.setItem("zipcode", response.data.UserData.zip);
-            localStorage.setItem("country", response.data.UserData.country);
-            localStorage.setItem("type", response.data.UserData.type);
-            commit("Login", response.data.UserData);
-          } else {
-            alert("Wrong Email or Password");
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
+
     //get orders
     async getOneOrders({ commit }) {
       axios
@@ -474,7 +464,7 @@ export default createStore({
           console.log(err);
         });
     },
-    
+
     async getOrdersHistory({ commit }) {
       axios
         .get(

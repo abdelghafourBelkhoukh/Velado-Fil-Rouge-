@@ -80,7 +80,7 @@ export default {
     methods: {
         Register() {
             if(this.UserRegister.passwordConfirmation == this.UserRegister.password) {
-                axios.post('http://localhost/fil-rouge/backend/Api/Customer/Register.php',
+                axios.post('http://localhost/fil-rouge/backend/Api/Auth/AuthController.php?action=register',
                 {
                     "firstName":this.UserRegister.firstName,
                     "lastName":this.UserRegister.lastName,

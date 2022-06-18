@@ -52,9 +52,6 @@ export default{
             showing : false,
         }
     },
-    methods:{
-        //
-    },
     mounted(){
         this.$store.dispatch("GetUsers")
         // this.$store.dispatch("GetProducts")
