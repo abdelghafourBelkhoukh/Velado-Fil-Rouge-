@@ -6,6 +6,14 @@
             <div class="loginForm bg-white sm:w-2/3 md:w-2/4 xl:w-1/3 h-auto flex justify-start flex-col px-8 py-14 rounded-lg sm:shadow-xl z-10">
                 <p class="text-gray-800 text-center text-lg font-bold">Login</p>
                 <div class="py-2">
+                    <label class="block text-sm text-gray-00 py-1" for="username">Role :</label>
+                    <select class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded" id="role" v-model="userData.role">
+                        <option value="Admin">Admin</option>
+                        <option value="Customer" selected>Customer</option>
+                        <option value="Deliverer">Deliverer</option>
+                    </select>
+                </div>
+                <div class="py-2">
                     <label class="block text-sm text-gray-00 py-1" for="username">Email :</label>
                     <input class="w-full px-5 py-2 text-gray-700 bg-gray-200 rounded" id="username" name="username" type="email" required="" placeholder="User Name" aria-label="username" v-model="userData.email">
                 </div>
@@ -38,6 +46,7 @@ export default {
             userData: {
                 email: "",
                 password: "",
+                role: "Customer"
             },
         };
     },

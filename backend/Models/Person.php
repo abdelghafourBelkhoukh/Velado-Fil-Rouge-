@@ -31,7 +31,7 @@ class Person extends Database
     }
     
     
-    public function Login($data){
+    public function LoginCustomer($data){
         $sql = "SELECT * FROM customer WHERE email = :email AND password = :password";
         $stmt = $this->conn->prepare($sql);
         if ($stmt->execute($data)) {

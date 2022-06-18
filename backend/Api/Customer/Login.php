@@ -24,14 +24,15 @@ $data = json_decode(file_get_contents("php://input"),true);
 
 $newData = array(
     'email' => $data['email'],
-    'password' => md5($data['password'])
+    'password' => md5($data['password']),
+    'role' => $data['role']
     );
 
 
 
 //check if user exists
 
-if($userData = $person->Login($newData)){
+if($userData = $person->LoginCustomer($newData)){
     echo json_encode(array
     (
         "UserData" => $userData,
