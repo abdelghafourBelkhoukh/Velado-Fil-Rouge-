@@ -17,9 +17,8 @@
                     <p class="new">{{post.price}} DH/Kg</p>
                     </div>
                     <div class="items cart">
-                      <div v-if="isLoggedIn">
-                    <i class="fa fa-shopping-cart"></i>
-                      <button @click="(e)=>addToCart(e,post.id)" >ADD TO CART</button>
+                    <div  v-if="isLoggedIn">
+                      <button  @click="(e)=>addToCart(e,post.id)" class="bg-white text-black px-4 py-3 rounded-lg"><i class="fa fa-shopping-cart mr-2"></i> ADD TO CART</button>
                     </div>
                     </div>
                 </div>
@@ -44,6 +43,9 @@ export default {
         searchResult(){
             this.length = this.$store.state.searchResult.length;
             return this.$store.state.searchResult;
+        },
+        isLoggedIn() {
+            return this.$store.state.logged;
         },
     },
     methods:{
@@ -80,6 +82,9 @@ export default {
         box-shadow: 0 0 5px #000;
         img{
             border-radius: 12px;
+            @media (max-width: 768px){
+              z-index: -1;
+            }
         }
   }
 .overlay {
@@ -92,17 +97,42 @@ export default {
   color: #fff;
   transition: all 0.5s;
   font-family: 'Playfair Display', serif;
+  @media (max-width: 768px) {
+    padding-top: 200px;
+    padding-bottom: 30px;
+    background-image: linear-gradient(transparent,black);
+      & .head {
+      transform: translateY(0px);
+      opacity: 100%;
+      }
 
+      & hr {
+        width: 75px;
+        transition-delay: 0.4s;
+      }
+      
+      & .price {
+        transform: translateY(0px);
+        transition-delay: 0.3s;
+        opacity: 1;
+      }
+      
+      & .cart {
+        transform: translateY(0px);
+        transition-delay: 0.3s;
+        opacity: 1;
+      }
+  }
 }
 
 
 .items {
     padding-left: 20px;
-  letter-spacing: 3px;
+    letter-spacing: 3px;
 }
 
 .head {
-    transform: translateY(40px);
+  transform: translateY(40px);
   font-size: 30px;
   line-height: 40px;
   transition: all 0.6s;
@@ -110,10 +140,8 @@ export default {
   hr {
     display: block;
     width: 0;
-    
     border: none;
     border-bottom: solid 2px #fff;
-    
     position: absolute;
     bottom: 0; left:20px;
     
@@ -149,37 +177,44 @@ export default {
 }
 
 .container:hover .overlay{
-  & .head {
-    transform: translateY(0px);
-    opacity: 100%;
-  }
+  @media (min-width: 768px){
+    & .head {
+      transform: translateY(0px);
+      opacity: 100%;
+    }
 
-  & hr {
-    width: 75px;
-    transition-delay: 0.4s;
-  }
-  
-  & .price {
-    transform: translateY(0px);
-    transition-delay: 0.3s;
-    opacity: 1;
-  }
-  
-  & .cart {
-    transform: translateY(0px);
-    transition-delay: 0.3s;
-    opacity: 0.5;
+    & hr {
+      width: 75px;
+      transition-delay: 0.4s;
+    }
+    
+    & .price {
+      transform: translateY(0px);
+      transition-delay: 0.3s;
+      opacity: 1;
+    }
+    
+    & .cart {
+      transform: translateY(0px);
+      transition-delay: 0.3s;
+      opacity: 1;
+    }
   }
 }
 
 .container:hover{
-    transition: all 0.5s;    
+  @media (min-width: 768px){
+    transition: all 0.5s;
     img{
-        z-index: -1;
+        filter: brightness(0.5);
     }
-    .overlay{
-    background: black ;
-    }
+
+  }
+}
+.container:hover img{
+  @media (min-width: 768px){
+    z-index: -1;
+  }
 }
 
 

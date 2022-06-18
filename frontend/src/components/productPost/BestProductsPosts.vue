@@ -23,10 +23,9 @@
             <p class="new">{{ post.price }} DH/Kg</p>
           </div>
           <div class="items cart">
-            <div v-if="isLoggedIn">
-            <i class="fa fa-shopping-cart"></i>
-              <button @click="(e)=>addToCart(e,post.id)" >ADD TO CART</button>
-            </div>
+          <div  v-if="isLoggedIn">
+            <button  @click="(e)=>addToCart(e,post.id)" class="bg-white text-black px-4 py-3 rounded-lg"><i class="fa fa-shopping-cart mr-2"></i> ADD TO CART</button>
+          </div>
           </div>
         </div>
       </div>
@@ -73,19 +72,19 @@ export default {
   border-radius: 12px;
   width: 300px;
   height: 400px;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
+  top:0; right: 0; left: 0; bottom: 0;
   margin: auto;
   background-size: cover;
   cursor: pointer;
   -webkit-box-shadow: 0 0 5px #000;
-  box-shadow: 0 0 5px #000;
-  img {
-    border-radius: 12px;
+        box-shadow: 0 0 5px #000;
+        img{
+            border-radius: 12px;
+            @media (max-width: 768px){
+              z-index: -1;
+            }
+        }
   }
-}
 .overlay {
   border-radius: 12px;
   width: 100%;
@@ -95,12 +94,39 @@ export default {
   grid-template-rows: 1fr 2fr 2fr 1fr;
   color: #fff;
   transition: all 0.5s;
-  font-family: "Playfair Display", serif;
+  font-family: 'Playfair Display', serif;
+  @media (max-width: 768px) {
+    padding-top: 200px;
+    padding-bottom: 30px;
+    background-image: linear-gradient(transparent,black);
+      & .head {
+      transform: translateY(0px);
+      opacity: 100%;
+      }
+
+      & hr {
+        width: 75px;
+        transition-delay: 0.4s;
+      }
+      
+      & .price {
+        transform: translateY(0px);
+        transition-delay: 0.3s;
+        opacity: 1;
+      }
+      
+      & .cart {
+        transform: translateY(0px);
+        transition-delay: 0.3s;
+        opacity: 1;
+      }
+  }
 }
 
+
 .items {
-  padding-left: 20px;
-  letter-spacing: 3px;
+    padding-left: 20px;
+    letter-spacing: 3px;
 }
 
 .head {
@@ -112,14 +138,11 @@ export default {
   hr {
     display: block;
     width: 0;
-
     border: none;
     border-bottom: solid 2px #fff;
-
     position: absolute;
-    bottom: 0;
-    left: 20px;
-
+    bottom: 0; left:20px;
+    
     transition: all 0.5s;
   }
 }
@@ -127,7 +150,7 @@ export default {
 .price {
   font-size: 22px;
   line-height: 50px;
-  font-weight: bold;
+  font-weight: bold;  
   opacity: 0;
   transform: translateY(40px);
   transition: all 0.7s;
@@ -141,7 +164,7 @@ export default {
   font-size: 12px;
   opacity: 0;
   letter-spacing: 1px;
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   // transform: translateY(40px);
   i {
     font-size: 16px;
@@ -151,32 +174,44 @@ export default {
   }
 }
 
-.container:hover .overlay {
-  & .head {
-    transform: translateY(0px);
-    opacity: 100%;
-  }
-  & hr {
-    width: 75px;
-    transition-delay: 0.4s;
-  }
-  & .price {
-    transform: translateY(0px);
-    transition-delay: 0.3s;
-    opacity: 1;
-  }
-  & .cart {
-    transform: translateY(0px);
-    transition-delay: 0.3s;
-    opacity: 0.5;
+.container:hover .overlay{
+  @media (min-width: 768px){
+    & .head {
+      transform: translateY(0px);
+      opacity: 100%;
+    }
+
+    & hr {
+      width: 75px;
+      transition-delay: 0.4s;
+    }
+    
+    & .price {
+      transform: translateY(0px);
+      transition-delay: 0.3s;
+      opacity: 1;
+    }
+    
+    & .cart {
+      transform: translateY(0px);
+      transition-delay: 0.3s;
+      opacity: 1;
+    }
   }
 }
 
-.container:hover {
-  background: black;
-  transition: all 0.5s;
+.container:hover{
+  @media (min-width: 768px){
+    transition: all 0.5s;
+    img{
+        filter: brightness(0.5);
+    }
+
+  }
 }
-.container:hover img {
-  z-index: -1;
+.container:hover img{
+  @media (min-width: 768px){
+    z-index: -1;
+  }
 }
 </style>
