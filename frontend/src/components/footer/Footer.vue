@@ -13,8 +13,9 @@
        </ul>
       </div>
       <div class="p-5 sm:w-7/12 md:border-r text-center">
-        <h3 class="font-bold text-xl text-black mb-4">Componentity</h3>
-        <p class="text-black text-sm mb-10">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+        <h3 class="font-bold text-xl text-black mb-4">Velado</h3>
+        <p class="text-black text-sm mb-10">Vos courses sans stress, livraison en moins de 24 heures de vos fruits et légumes !<br>
+Commandez de 7h à minuit ou par téléphone de 08H30 à 19H00.</p>
        <div class="flex py-5 m-auto text-gray-800 text-sm flex-col items-center max-w-screen-xl ">
       <div class="md:flex-auto md:flex-row-reverse mt-2 flex-row flex">
          <a href="/#" class="w-6 mx-1">

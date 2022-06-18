@@ -67,6 +67,11 @@ const routes = [
     // },
     component: () => import("../views/DelivererDashboardview.vue"),
   },
+  {
+    path: "/About",
+    name: "About",
+    component: () => import("../views/AboutView.vue"),
+  }
 ];
 
 

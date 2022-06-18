@@ -37,11 +37,11 @@
                 </div>
                 <div class="py-2">
                     <label class="block text-sm text-gray-600" for="cus_password">Password</label>
-                    <input class="w-full px-5  py-2 text-gray-700 bg-gray-200 rounded" id="cus_password" name="cus_password" type="text" required="" placeholder="Your Password" aria-label="Password" v-model="UserRegister.password">
+                    <input class="w-full px-5  py-2 text-gray-700 bg-gray-200 rounded" id="cus_password" name="cus_password" type="password" required="" placeholder="Your Password" aria-label="Password" v-model="UserRegister.password">
                 </div>
                 <div class="py-2">
                     <label class="block text-sm text-gray-600" for="cus_password_confirmation">Password Confirmation</label>
-                    <input class="w-full px-5  py-2 text-gray-700 bg-gray-200 rounded" id="cus_password_confirmation" name="cus_password_confirmation" type="text" required="" placeholder="Your Password confirmation" aria-label="Password_confirmation" v-model="UserRegister.passwordConfirmation">
+                    <input class="w-full px-5  py-2 text-gray-700 bg-gray-200 rounded" id="cus_password_confirmation" name="cus_password_confirmation" type="password" required="" placeholder="Your Password confirmation" aria-label="Password_confirmation" v-model="UserRegister.passwordConfirmation">
                 </div>
                 <div class="mt-4">
                     <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" @click="Register">Register</button>
@@ -94,12 +94,17 @@ export default {
                 })
                 .then(function (response) {
                     console.log(response);
+                    if(response.status == 200) {
+                        window.location.href = '/login';
+                        alert('Register Success');
+                    } else {
+                        alert('Register Failed');
+                    }
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
 
-                this.$router.push('/login');
             }else {
                 alert('Password not match');
             }

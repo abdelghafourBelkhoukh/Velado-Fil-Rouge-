@@ -10,8 +10,8 @@
                         <thead class="bg-black text-white text-normal">
                         <tr class="py-2 h-12">
                             <th scope="col">Order N°</th>
-                            <th scope="col" class="hidden">Customer Name</th>
-                            <th scope="col" class="hidden">Order Date</th>
+                            <!-- <th scope="col" class="hidden">Customer Name</th>
+                            <th scope="col" class="hidden">Order Date</th> -->
                             <th scope="col">Order Detailes</th>
                             <th scope="col">Status</th>
                         </tr>
@@ -19,8 +19,8 @@
                         <tbody>
                         <tr v-for="item in OrderData" class="border-b">
                             <td class="py-4">{{item.id}}</td>
-                            <td class="py-4 hidden ">{{item.firstname +' '+item.lastname}}</td>
-                            <td class="py-4 hidden ">{{item.added_at}}</td>
+                            <!-- <td class="py-4 hidden ">{{item.firstname +' '+item.lastname}}</td>
+                            <td class="py-4 hidden ">{{item.added_at}}</td> -->
                             <td class="py-4">
                                 <button class="bg-white text-black font-bold w-full rounded-full" @click="getOrderDetailsData(item.id)">
                                         <i class="fas fa-eye mr-2"></i>
@@ -72,7 +72,7 @@
                     </button>
                 </div>
                 <span class="text-center text-2xl font-semibold pb-8 ">Products details</span>
-                <div>
+                <div class="h-[305vh] overflow-y-scroll">
                     <table class="table text-grey-darkest text-center w-full h-full">
                         <thead class="bg-black text-white text-normal">
                         <tr class="py-2 h-12">

@@ -15,7 +15,7 @@
             <!-- //Here can be a logo -->
             <ul class="nav-items flex md:w-80 justify-between w-full bg-black pt-10 md:pt-0">
             <li><router-link to="/">Home</router-link></li>
-            <li>About</li>
+            <li><router-link to="/About">About</router-link></li>
             <li>Contact</li>
             <!-- <li><router-link to="/Dashboard">Dashboard</router-link></li> -->
             </ul>
