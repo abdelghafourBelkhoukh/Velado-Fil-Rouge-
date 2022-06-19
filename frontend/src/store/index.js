@@ -35,15 +35,7 @@ export default createStore({
     products: [],
     popupProduct: false,
     popupUpdateProduct: false,
-    productData: {
-      id: "",
-      name: "",
-      price: "",
-      description: "",
-      image: "",
-      category: "",
-      rank: "",
-    },
+    productData: {},
     productsData: [],
     BestProduct: [],
     BestSells: [],
@@ -142,21 +134,8 @@ export default createStore({
     UpdateProduct(state, id) {
       state.products.forEach((product) => {
         if (product.id == id) {
-          state.productData.id = product.id;
-          state.productData.name = product.name;
-          state.productData.price = product.price;
-          state.productData.description = product.description;
-          state.productData.image = product.image;
-          state.productData.category = product.category;
-
-          let checkRank = [
-            { value: product.bestOffer, name: "bestOffer" },
-            { value: product.bestSells, name: "bestSells" },
-            { value: product.bestProduct, name: "bestProduct" },
-          ];
-          state.productData.rank = checkRank.filter(function (item) {
-            return item.value == 1;
-          });
+          state.productData = product;
+          console.log(state.productData);
         }
       });
     },
@@ -169,15 +148,15 @@ export default createStore({
     filterProducts(state, products) {
       let i = 0;
       state.BestProduct = products.filter(
-        (product) => product.bestProduct == 1 && i++ < 3
+        (product) => product.rank == "BestProduct" && i++ < 3
       );
       i = 0;
       state.BestSells = products.filter(
-        (product) => product.bestSells == 1 && i++ < 3
+        (product) => product.rank == "BestSells" && i++ < 3
       );
       i = 0;
       state.BestOffer = products.filter(
-        (product) => product.bestOffer == 1 && i++ < 3
+        (product) => product.rank == "BestOffer" && i++ < 3
       );
     },
     showProductPage(state) {

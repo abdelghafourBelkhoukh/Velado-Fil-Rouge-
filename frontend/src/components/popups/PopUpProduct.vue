@@ -43,8 +43,8 @@
                                 <select class="w-full p-2 border-2 border-gray-400 rounded-lg" id="Image" v-model="ProductData.rank">
                                     <option value="" selected>Normal Product</option>
                                     <option value="BestOffer">Best offer</option>
-                                    <option value="BestSells">Best sell</option>
-                                    <option value="BestProduct">Best Product</option>
+                                    <option value="BestSells">Best sells</option>
+                                    <option value="BestProduct">Best Products</option>
                                 </select>
                             </div>
                             <div class="flex flex-col">

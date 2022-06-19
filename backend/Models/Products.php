@@ -22,23 +22,17 @@ class Products extends Database{
     }
 
     public function create($data, $image){
-        $Rank = 1;
-        $sql = '';
-        if($data['rank'] == null){
-            $sql = "INSERT INTO products (name, price, description, image, category, quantity) VALUES (:name, :price, :description, :image, :category, :quantity)";
-            $stmt = $this->conn->prepare($sql);
-        }else{
-            $sql = "INSERT INTO products (name, price, description, image, category, quantity ,". $data['rank'] .") VALUES (:name, :price, :description, :image, :category, :quantity , :Rank)";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':Rank', $Rank);
-        }
-        
+        // var_dump($data);
+        // die();
+        $sql = "INSERT INTO products (name, price, description, image, category, quantity, rank) VALUES (:name, :price, :description, :image, :category, :quantity , :rank)";
+        $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':name', $data['name']);
         $stmt->bindParam(':price', $data['price']);
         $stmt->bindParam(':description', $data['description']);
         $stmt->bindParam(':image', $image);
         $stmt->bindParam(':category', $data['category']);
         $stmt->bindParam(':quantity', $data['quantity']);
+        $stmt->bindParam(':rank', $data['rank']);
         
         if ($stmt->execute()) {
             return true;
@@ -71,28 +65,20 @@ class Products extends Database{
     }
 
     public function update($data,$image){
-        $sql = '';
-        if($data['rank'] == null){
-            if($image == null){
-                $sql = "UPDATE products SET id = :id name = :name, price = :price, description = :description, category = :category WHERE id = :id";
-                $stmt = $this->conn->prepare($sql);
-            }else{
-            $sql = "UPDATE products SET name = :name, price = :price, description = :description, image = :image, category = :category WHERE id = :id";
+        // var_dump($data);
+        // var_dump($image);
+        // die();
+
+        if($image === null){
+            $sql = "UPDATE products SET name = :name, price = :price, description = :description, category = :category, rank = :rank WHERE id = :id";
+            $stmt = $this->conn->prepare($sql);
+        }else{
+            $sql = "UPDATE products SET name = :name, price = :price, description = :description, image = :image, category = :category, rank = :rank WHERE id = :id";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':image', $image);
-            }
-        }else{
-            $Rank = 1;
-            if($image == null){
-                $sql = "UPDATE products SET name = :name, price = :price, description = :description, category = :category ,". $data['rank'] . "= :Rank WHERE id = :id";
-                $stmt = $this->conn->prepare($sql);
-            }else{
-                $sql = "UPDATE products SET name = :name, price = :price, description = :description, image = :image, category = :category , ". $data['rank'] ."= :Rank WHERE id = :id";
-                $stmt = $this->conn->prepare($sql);
-                $stmt->bindParam(':image', $image);
-            }
-            $stmt->bindParam(':Rank', $Rank);
         }
+
+        $stmt->bindParam(':rank', $data['rank']);
         $stmt->bindParam(':name', $data['name']);
         $stmt->bindParam(':price', $data['price']);
         $stmt->bindParam(':description', $data['description']);
