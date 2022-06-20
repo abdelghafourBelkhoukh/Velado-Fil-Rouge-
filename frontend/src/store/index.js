@@ -18,7 +18,16 @@ export default createStore({
     //   zip: localStorage.getItem("zip") || "",
     //   country: localStorage.getItem("country") || "",
     // },
-    user: {},
+    user: {
+      id: localStorage.getItem("id"),
+      firstname: localStorage.getItem("firstName"),
+      lastname: localStorage.getItem("lastName"),
+      email: localStorage.getItem("email"),
+      address: localStorage.getItem("address"),
+      city: localStorage.getItem("city"),
+      zip: localStorage.getItem("zipcode"),
+      country: localStorage.getItem("country"),
+    },
     admin: {},
     deliverer: {},
     //uesr info
@@ -313,11 +322,13 @@ export default createStore({
     LoginAdmin(state, admin) {
       state.admin = admin;
       state.adminLogged = true;
+      localStorage.setItem("admin", "true");
     },
     LoginDeliverer(state, deliverer) {
       console.log(deliverer);
       state.deliverer = deliverer;
       state.delivererLogged = true;
+      localStorage.setItem("deliverer", "true");
     },
     //end Login
     getDelivery(state, delivery) {
