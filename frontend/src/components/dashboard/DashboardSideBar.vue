@@ -92,8 +92,8 @@ export default{
         logout(){
             this.$store.commit('logoutAdmin');
             this.$router.push("/login");
-        }
-    }
+        },
+    },
 
 }
 

@@ -3,12 +3,12 @@
                         <div class="flex justify-between px-6 py-2 border-b border-light-grey">
                             <div class="text-red-700 text-2xl font-bold">Users</div>
                             <!--popup for add -->
-                            <div class="flex justify-end">
+                            <!-- <div class="flex justify-end">
                                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" @click="popupUser">
                                     <i class="fas fa-plus"></i>
                                 </button>
 
-                            </div>
+                            </div> -->
                         </div>
                     <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2 h-auto overflow-x-scroll xl:overflow-hidden">
                         <!-- card -->
@@ -31,11 +31,11 @@
                                         <td class="py-4">
                                             <div class="flex flex-row justify-center">
                                                 <div class="flex flex-row justify-center">
-                                                    <button @click="UpdateUser(item.id)">
+                                                    <!-- <button @click="UpdateUser(item.id)">
                                                         <a href="#" class="text-grey-darkest hover:text-grey-dark px-2">
                                                             <i class="fas fa-edit"></i>
                                                         </a>
-                                                    </button>
+                                                    </button> -->
                                                     <button @click="DeleteUser(item.id)">
                                                         <a href="#" class="text-grey-darkest hover:text-grey-dark px-2">
                                                             <i class="fas fa-trash-alt"></i>

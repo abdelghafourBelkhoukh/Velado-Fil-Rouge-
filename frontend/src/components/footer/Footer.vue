@@ -97,32 +97,31 @@ Commandez de 7h à minuit ou par téléphone de 08H30 à 19H00.</p>
       "
       id="exampleURL0"
       placeholder="Email.." >
-       <label for="">Message :</label>
-       <textarea 
-       class="form-control w-full
-        block
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        transition
-        ease-in-out
-        m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-        id="exampleFormControlTextarea1"
-        rows="3"
-        placeholder="Your message.."></textarea>
-            <button class="mt-6 inline-block px-8 py-3  bg-black hover:border-white text-white  font-medium text-sm leading-tight uppercase rounded hover:bg-opacity-50 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Sign up</button>
+         <label for="">Message :</label>
+         <textarea 
+         class="form-control w-full
+         block
+         px-3
+         py-1.5
+         text-base
+         font-normal
+         text-gray-700
+         bg-white bg-clip-padding
+         border border-solid border-gray-300
+         rounded
+         transition
+         ease-in-out
+         m-0
+         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+         id="exampleFormControlTextarea1"
+         rows="3"
+         placeholder="Your message.."></textarea>  
+            <button class="mt-6 inline-block px-8 py-3  bg-black hover:border-white text-white  font-medium text-sm leading-tight uppercase rounded hover:bg-opacity-50 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Envoyer</button>
       </div>
    </div>
-  
+
 </div>
       <div class="text-center text-sm w-full h-auto py-4 bg-black text-white">© Copyright 2022. Abdelghafour Belkhoukh.</div>
-
 </template>
 
 <script>    

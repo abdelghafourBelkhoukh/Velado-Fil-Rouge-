@@ -7,17 +7,6 @@ export default createStore({
     //cart
     alertCart: "",
     cartData: [],
-    //uesr info
-    // user: {
-    //   id: localStorage.getItem("id") || "",
-    //   firstname: localStorage.getItem("firstName") || "",
-    //   lastname: localStorage.getItem("lastName") || "",
-    //   email: localStorage.getItem("email") || "",
-    //   address: localStorage.getItem("address") || "",
-    //   city: localStorage.getItem("city") || "",
-    //   zip: localStorage.getItem("zip") || "",
-    //   country: localStorage.getItem("country") || "",
-    // },
     user: {
       id: localStorage.getItem("id"),
       firstname: localStorage.getItem("firstName"),

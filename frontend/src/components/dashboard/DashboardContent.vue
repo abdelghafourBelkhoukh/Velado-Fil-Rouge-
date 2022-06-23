@@ -10,7 +10,7 @@
         <div class="w-full h-[90vh] overflow-y-auto">
           <!-- searchBar -->
           <div>
-            <searchBarDashboard class="pt-12 pb-6" v-if="$store.state.TableName != 'Orders' && $store.state.TableName != 'OrdersHistory'"/>
+            <searchBarDashboard class="pt-12 pb-6" v-if="$store.state.TableName != 'Orders' && $store.state.TableName != 'OrdersHistory' && $store.state.showSideBar == false"/>
           </div>
           <!-- searchBar -->
           <!-- main -->

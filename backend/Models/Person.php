@@ -19,7 +19,6 @@ class Person extends Database
         $this->conn = $db;
     }
 
-
     public function Register($data){
         $sql = "INSERT INTO customer (firstName, lastName, email, password , city, country, address, zip ,type) VALUES (:firstName, :lastName, :email, :password, :city, :country, :address, :zip, :type)";
         $stmt = $this->conn->prepare($sql);
@@ -194,5 +193,3 @@ class Person extends Database
     }
     
 }
-
-?>
